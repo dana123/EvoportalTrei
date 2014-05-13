@@ -22,9 +22,12 @@ public class LogInPage extends PageObject {
 	@FindBy(css = "a[href*='new-vacation']")
 	private WebElement newVacationMenu;
 
+	
+	
+	
+	
 	// click on sign in
 	public void clickSignIn() {
-
 		element(signInButton).waitUntilVisible();
 		signInButton.click();
 	}
