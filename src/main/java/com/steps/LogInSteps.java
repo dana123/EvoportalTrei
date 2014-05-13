@@ -1,18 +1,14 @@
 package com.steps;
 
-import com.pages.DictionaryPage;
-import com.pages.LogInPage;
-
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.StepGroup;
-import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;
-import static ch.lambdaj.Lambda.join;
-import static org.fest.assertions.Assertions.assertThat;
+
+import com.pages.LogInPage;
 
 public class LogInSteps extends ScenarioSteps {
 
-	DictionaryPage dictionaryPage;
+	
 	LogInPage logInPage;
 
 	@Step

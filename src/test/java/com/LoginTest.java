@@ -14,7 +14,7 @@ import org.openqa.selenium.WebDriver;
 import com.requirements.Application;
 import com.steps.LogInSteps;
 
-@Story(Application.Search.SearchByKeyword.class)
+@Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
 public class LoginTest {
 

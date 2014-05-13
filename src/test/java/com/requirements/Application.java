@@ -4,8 +4,7 @@ import net.thucydides.core.annotations.Feature;
 
 public class Application {
     @Feature
-    public class Search { //Feature
-        public class SearchByKeyword {} //Storyy
-        public class SearchByMultipleKeywords {} //Story
+    public class Authentication { 
+      public class LogIn{}
     }
 }
