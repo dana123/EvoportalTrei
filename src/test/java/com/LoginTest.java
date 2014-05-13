@@ -17,7 +17,7 @@ import com.steps.MyRequestsSteps;
 
 @Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
-public class LogInTest {
+public class LoginTest {
 
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
