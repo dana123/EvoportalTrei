@@ -19,9 +19,15 @@ public class LogInPage extends PageObject {
 	@FindBy(css = ".aui-button-input.aui-button-input-submit")
 	private WebElement logInButton;
 
+	@FindBy(css = "a[href='http://192.168.1.68:9080/web/lt/new-vacation']")
+	private WebElement newVacationMenu;
+
+	
+	
+	
+	
 	// click on sign in
 	public void clickSignIn() {
-
 		element(signInButton).waitUntilVisible();
 		signInButton.click();
 	}
@@ -39,6 +45,11 @@ public class LogInPage extends PageObject {
 	public void clickLogIn() {
 		element(logInButton).waitUntilVisible();
 		logInButton.click();
+	}
+
+	public void clickNewVacationMenu() {
+		element(newVacationMenu).waitUntilVisible();
+		newVacationMenu.click();
 	}
 
 }
