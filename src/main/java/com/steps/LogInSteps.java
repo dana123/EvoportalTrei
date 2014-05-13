@@ -8,7 +8,6 @@ import com.pages.LogInPage;
 
 public class LogInSteps extends ScenarioSteps {
 
-	
 	LogInPage logInPage;
 
 	@Step
@@ -18,11 +17,11 @@ public class LogInSteps extends ScenarioSteps {
 	}
 
 	@Step
-	public void openPage(){
-		
+	public void openPage() {
+
 		logInPage.open();
 	}
-	
+
 	@Step
 	public void enterUserName(String user) {
 		logInPage.inputUserName(user);
@@ -38,13 +37,19 @@ public class LogInSteps extends ScenarioSteps {
 	public void clickLogIn() {
 		logInPage.clickLogIn();
 	}
-	
+
 	@StepGroup
-	public void logIn(String user, String pass){
+	public void logIn(String user, String pass) {
+		openPage();
 		clickSignIn();
 		enterUserName(user);
-		enterPassword(pass); 
+		enterPassword(pass);
 		clickLogIn();
+		newRequestMenu();
 	}
 
+	@Step
+	public void newRequestMenu() {
+		logInPage.clickNewVacationMenu();
+	}
 }
