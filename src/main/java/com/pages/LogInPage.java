@@ -24,9 +24,12 @@ public class LogInPage extends PageObject {
 	@FindBy(css = "a[href='http://192.168.1.68:9080/web/lt/new-vacation']")
 	private WebElement newVacationMenu;
 
+	
+	
+	
+	
 	// click on sign in
 	public void clickSignIn() {
-
 		element(signInButton).waitUntilVisible();
 		signInButton.click();
 	}

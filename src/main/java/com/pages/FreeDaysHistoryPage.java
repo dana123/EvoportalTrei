@@ -7,6 +7,6 @@ import net.thucydides.core.pages.PageObject;
 
 public class FreeDaysHistoryPage extends PageObject {
 
-	
+//	@FindBy(css=)
 	
 }
