@@ -1,11 +1,9 @@
 package com.pages;
 
-import org.openqa.selenium.WebElement;
-
-import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
-import net.thucydides.core.pages.WebElementFacade;
+
+import org.openqa.selenium.WebElement;
 
 public class LogInPage extends PageObject {
 
