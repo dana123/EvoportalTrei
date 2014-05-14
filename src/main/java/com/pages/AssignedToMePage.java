@@ -30,6 +30,12 @@ public class AssignedToMePage extends PageObject {
 	@FindBy(css = "td[class='align-left col-2 col-employee-name  valign-middle']")
 	private WebElementFacade requestLink;
 
+	@FindBy(name = "_evovacation_WAR_EvoVacationportlet_allRowIds")
+	private WebElementFacade checkboxAllRequests;
+
+	@FindBy(css = "#_evovacation_WAR_EvoVacationportlet_multipleApproveButton")
+	private WebElementFacade multipleApproveButton;
+
 	public void clickApproveButton() {
 		approveButton.click();
 	}
@@ -47,6 +53,14 @@ public class AssignedToMePage extends PageObject {
 	// }
 	public void clickNewVacation() {
 		newVacationLink.click();
+	}
+
+	public void checkAllRequests() {
+		checkboxAllRequests.click();
+	}
+
+	public void clickAllRequests() {
+		multipleApproveButton.click();
 	}
 
 	public static List<Integer> getAllIntegerNumbersFromString(String text) {
@@ -70,6 +84,7 @@ public class AssignedToMePage extends PageObject {
 		Assert.assertTrue(
 				"No matching integer was found in the provided string!",
 				listOfIntegers.size() > 0);
+		System.out.println(listOfIntegers.size());
 		return listOfIntegers;
 	}
 
@@ -80,11 +95,12 @@ public class AssignedToMePage extends PageObject {
 				.getText().trim();
 		int noOfPages = getAllIntegerNumbersFromString(noOfPagesContainer).get(
 				2);
+		System.out.println(noOfPages);
 		boolean foundTerms = false;
 		for (int i = 0; i < noOfPages; i++) {
 			List<WebElement> searchResults = getDriver()
 					.findElements(
-							By.cssSelector("td[class='align-left col-2 col-employee-name  valign-middle']"));
+							By.cssSelector("td[class='align-left col-2 col-employee-name  valign-middle'] > a"));
 			for (WebElement searchResult : searchResults) {
 				boolean containsTerms = true;
 				$(searchResult).waitUntilVisible();
@@ -98,10 +114,11 @@ public class AssignedToMePage extends PageObject {
 				if (containsTerms) {
 					foundTerms = true;
 					searchResult.click();
-					searchResult.click();
+					waitABit(2000);
 					break;
 				}
 			}
+		
 			if (i < (noOfPages - 1) && !foundTerms) {
 				getDriver()
 						.findElement(
@@ -113,5 +130,12 @@ public class AssignedToMePage extends PageObject {
 		Assert.assertTrue(
 				"No record containing the searched terms was found in the table!",
 				foundTerms);
+	}
+
+	public void openRequest(String requestID) {
+		getDriver().findElement(
+				By.cssSelector("a[href*='vacationId=" + requestID + "']"))
+				.click();
+
 	}
 }
