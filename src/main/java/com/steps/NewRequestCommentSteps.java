@@ -3,16 +3,18 @@ package com.steps;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.StepGroup;
 
+import com.pages.CalendarPage;
 import com.pages.NewVacationRequestPage;
 
 public class NewRequestCommentSteps {
 
 	NewVacationRequestPage newVacation;
+	CalendarPage calendarPage;
 
-	@Step
-	public void chooseNewRequestMenu() {
-		newVacation.clickNewVacation();
-	}
+//	@Step
+//	public void chooseNewRequestMenu() {
+//		newVacation.clickNewVacation();
+//	}
 
 	@Step
 	public void chooseVacationType(String vacationType) {
@@ -37,11 +39,12 @@ public class NewRequestCommentSteps {
 
 	@StepGroup
 	public void newRequestStep(String vacationType, String com) {
-		chooseNewRequestMenu();
+//		chooseNewRequestMenu();
 		chooseVacationType(vacationType);
 		addComment();
 		typeComment(com);
 		saveRequest();
 
 	}
+	
 }
