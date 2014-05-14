@@ -11,6 +11,7 @@ import net.thucydides.core.pages.PageObject;
 
 import org.openqa.selenium.WebElement;
 
+
 public class CalendarPage extends PageObject {
 	
 	@FindBy(css = "input[name='startDate']")
