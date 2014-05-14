@@ -45,7 +45,7 @@ public class NewRequestTest {
 		logInSteps.logIn("horatiuencian", "920X-p0U");
 		newRequestMenuSteps.chooseNewRequestMenu();
 		calendarStep.setDateStep(4, 6, 2014, 4,7,2014);
-		newRequestSteps.newRequestStep( "CM");
+		newRequestSteps.newRequestStep( "CM", "Your request failed to complete.");
 	}
 
 }
