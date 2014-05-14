@@ -6,5 +6,6 @@ public class Application {
     @Feature
     public class Authentication { 
       public class LogIn{}
+      
     }
 }

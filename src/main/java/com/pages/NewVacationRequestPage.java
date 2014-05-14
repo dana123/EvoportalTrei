@@ -2,6 +2,8 @@ package com.pages;
 
 import net.thucydides.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
+
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -34,6 +36,12 @@ public class NewVacationRequestPage extends PageObject {
 
 	@FindBy(name = "commentContent")
 	private WebElement contentComment;
+
+	@FindBy(css = ".portlet-msg-success")
+	private WebElement succesMessage;
+
+	@FindBy(css = ".portlet-msg-error:nth-child(1)")
+	private WebElement errorMessage;
 
 	/**
 	 * @param vacationType
@@ -70,6 +78,36 @@ public class NewVacationRequestPage extends PageObject {
 		element(contentComment).waitUntilVisible();
 		contentComment.sendKeys(com);
 	}
+
+	// public void checkThatYouReceiveTheErrorMessage(String message) {
+	//
+	// }
+	public void checkThatYouReceiveTheErrorMessage2(String message) {
+		String elementText = getDriver()
+				.findElement(
+						By.cssSelector("#mainVacationContent >#createVacation form >.portlet-msg-error"))
+				.getText().trim();
+		if (!elementText.toLowerCase().contains(message.toLowerCase())) {
+			Assert.fail(String.format("Thef containerf does not contain message!",
+					message));
+			System.out.println(message);
+		}
+	}
+	public void checkThatYouReceiveTheErrorMessage(String message) {
+		String elementText = getDriver()
+				.findElement(
+						By.cssSelector(".portlet-body >.portlet-msg-error"))
+						.getText().trim();
+		if (!elementText.toLowerCase().contains(message.toLowerCase())) {
+			Assert.fail(String.format("Thef containerf does not contain message!",
+					message));
+			System.out.println(message);
+		}
+	}
+
+//	public void checkErrorMessage(String error) {
+//		saveNewRequest.getCssValue(error);
+//	}
 
 	public void saveNewRequestButton() {
 		saveNewRequest.click();

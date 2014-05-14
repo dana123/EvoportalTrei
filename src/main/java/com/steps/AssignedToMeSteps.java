@@ -18,6 +18,7 @@ public class AssignedToMeSteps extends ScenarioSteps {
 	public void accessNewVacation() {
 		assignedToMePage.clickNewVacation();
 	}
+
 	@Step
 	public void accessInbox() {
 		assignedToMePage.clickInbox();
@@ -32,4 +33,20 @@ public class AssignedToMeSteps extends ScenarioSteps {
 	public void rejectRequest() {
 		assignedToMePage.clickRejectButton();
 	}
+
+	@Step
+	public void sellectAllRequests() {
+		assignedToMePage.checkAllRequests();
+	}
+
+	@Step
+	public void approveAllRequests() {
+		assignedToMePage.clickAllRequests();
+	}
+
+	@Step
+	public void openRequest(String requestID) {
+		assignedToMePage.openRequest(requestID);
+	}
+
 }
