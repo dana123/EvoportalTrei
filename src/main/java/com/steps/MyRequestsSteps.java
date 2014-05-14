@@ -7,62 +7,77 @@ import net.thucydides.core.steps.ScenarioSteps;
 
 import com.pages.MyRequestsPage;
 
-public class MyRequestsSteps extends ScenarioSteps{
-	
+public class MyRequestsSteps extends ScenarioSteps {
+
 	MyRequestsPage myRequestPage;
-	
+
 	@Steps
 	LogInSteps logInSteps;
-	
-	
-	
+
 	@Step
-	public void clickMyRequestsPage(){
+	public void clickMyRequestsPage() {
 		myRequestPage.clickMyRequestsPage();
 	}
-	
+
 	@Step
-	public void checkHolidayCheckBox(){
+	public void checkHolidayCheckBox() {
 		myRequestPage.clickHolidayCheckBox();
 	}
+
 	@Step
-	public void checkVacationWithoutPayment(){
+	public void checkVacationWithoutPayment() {
 		myRequestPage.clickVacationWithoutPayment();
 	}
-	
+
 	@Step
-	public void checkOneFiveFilter(){
+	public void checkOneFiveFilter() {
 		myRequestPage.checkOneFiveDaysFilter();
 	}
+
 	@Step
-	public void applyFiltersOnMyRequests(){
-		myRequestPage.clickApplyFilterButton();
-	}
-	
-	@Step
-	public int verifyIfTableExists(){
-		if(myRequestPage.checkIfRequestsTableExists()==true)		return 1;
-		return 0;
-	}
-	@StepGroup
-	public void filterMyRequests() {
-		logInSteps.openPage();
-		logInSteps.logIn("alexandruduminciuc", "alexandru87");
-		
-		//New Requests
-		
-		clickMyRequestsPage();
-		checkHolidayCheckBox();
-		checkVacationWithoutPayment();
-		checkOneFiveFilter();
-		applyFiltersOnMyRequests();
-		if(verifyIfTableExists()==1){
-			//cauta corectitudinea datelor
-		}
-		
-		//Cancel or withdraw requests
-		
+	public void checkPending() {
+		myRequestPage.clickPendingCheckBox();
 	}
 
-			
+	@Step
+	public void applyFiltersOnMyRequests() {
+		myRequestPage.clickApplyFilterButton();
+	}
+
+	@Step
+	public int verifyIfTableExists() {
+		if (myRequestPage.checkIfRequestsTableExists() == true)
+			return 1;
+		return 0;
+	}
+
+	@StepGroup
+	public void filterMyRequests(String...terms) {
+//		logInSteps.openPage();
+//		logInSteps.logIn("alexandruduminciuc", "alexandru87");
+
+		// New Requests
+
+		clickMyRequestsPage();
+//		checkHolidayCheckBox();
+//		checkVacationWithoutPayment();
+//		checkOneFiveFilter();
+//		checkPending();
+//		applyFiltersOnMyRequests();
+		
+//		if (verifyIfTableExists() == 1) {
+//			// verifica corectitudinea datelor
+//			
+			lookForElement(terms);
+//			
+//		}
+
+		// Cancel or withdraw requests
+
+	}
+	@Step
+	public void lookForElement(String... terms){
+		myRequestPage.lookForElement(terms);
+	}
+
 }
