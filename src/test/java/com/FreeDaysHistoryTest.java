@@ -1,7 +1,5 @@
 package com;
 
-import java.text.ParseException;
-
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
 import net.thucydides.core.annotations.Steps;
@@ -14,14 +12,13 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import com.requirements.Application;
-import com.steps.CalendarSteps;
-import com.steps.ChooseNewRequestMenuStep;
+import com.steps.FreeDaysHistorySteps;
 import com.steps.LogInSteps;
-import com.steps.NewRequestSteps;
 
 @Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
-public class NewRequestTest {
+public class FreeDaysHistoryTest {
+
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
 
@@ -32,20 +29,15 @@ public class NewRequestTest {
 	LogInSteps logInSteps;
 
 	@Steps
-	NewRequestSteps newRequestSteps;
-	
-	@Steps
-	ChooseNewRequestMenuStep newRequestMenuSteps;
-	
-	@Steps
-	CalendarSteps calendarStep;
+	FreeDaysHistorySteps freeDaysHistorySteps;
 
 	@Test
-	public void newRequest() throws ParseException {
+	public void filterRequests() {
+		logInSteps.openPage();
 		logInSteps.logIn("horatiuencian", "920X-p0U");
-		newRequestMenuSteps.chooseNewRequestMenu();
-		calendarStep.setDateStep(4, 6, 2014, 4,7,2014);
-		newRequestSteps.newRequestStep( "CM", "Your request failed to complete.");
+		
+		freeDaysHistorySteps.clickFreeDaysHistoryMenu();
+		freeDaysHistorySteps.selectAFilterType("Vacation days");
+		freeDaysHistorySteps.clickOnApplyFilters();
 	}
-
 }

@@ -1,46 +1,43 @@
 package com.steps;
 
+import java.text.ParseException;
+
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.StepGroup;
 
+import com.pages.CalendarPage;
 import com.pages.NewVacationRequestPage;
 
 public class NewRequestSteps {
 
 	NewVacationRequestPage newVacation;
-
-	@Step
-	public void chooseNewRequestMenu() {
-		newVacation.clickNewVacation();
-	}
+	CalendarPage calendar;
 
 	@Step
 	public void chooseVacationType(String vacationType) {
 		newVacation.selectVacationType(vacationType);
-
 	}
 
 	@Step
 	public void saveRequest() {
-		newVacation.saveNewequestButton();
+		newVacation.saveNewRequestButton();
+	}
+	@Step
+	public void checkMessage(String message) {
+		newVacation.checkThatYouReceiveTheErrorMessage(message);
 	}
 
-//	@Step
-//	public void addComment(String comment) {
-//		newVacation.clickAddComment(comment);
-//	}
-
 	/**
-	 * @param vacationType 
-	 * 				Vacation - 'CO', 
-	 * 				'CF', 'CS', 'CM']
-	 * 	
+	 * @param vacationType
+	 *            Vacation - 'CO', 'CF', 'CS', 'CM']
+	 * @throws ParseException
+	 * 
 	 */
 	@StepGroup
-	public void newRequestStep(String vacationType, String comment) {
-		chooseNewRequestMenu();
+	public void newRequestStep(String vacationType, String message)
+			throws ParseException {
 		chooseVacationType(vacationType);
-//		addComment(comment);
-		 saveRequest();
+		saveRequest();
+		checkMessage(message);
 	}
 }

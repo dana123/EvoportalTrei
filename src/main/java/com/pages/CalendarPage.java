@@ -8,20 +8,26 @@ import java.util.List;
 import net.thucydides.core.annotations.findby.By;
 import net.thucydides.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
-import net.thucydides.core.pages.WebElementFacade;
 
 import org.openqa.selenium.WebElement;
 
+
 public class CalendarPage extends PageObject {
+	
+	@FindBy(css = "input[name='startDate']")
+	private WebElement startDateInput;
+
+	@FindBy(css = "input[name='endDate']")
+	private WebElement endDateInput;
 
 	@FindBy(css = "div[aria-hidden='false'] .aui-calendar-title")
-	private WebElementFacade calendarTitle;
+	private WebElement calendarTitle;
 
 	@FindBy(css = "div[aria-hidden='false'] .aui-icon.aui-icon-circle-triangle-r.aui-calendar-next")
-	private WebElementFacade nextButton;
+	private WebElement nextButton;
 
 	@FindBy(css = "div[aria-hidden='false'] .aui-icon.aui-icon-circle-triangle-l.aui-calendar-prev")
-	private WebElementFacade previousButton;
+	private WebElement previousButton;
 
 	public void setDate(int month, int day, int year) throws ParseException {
 
@@ -55,6 +61,16 @@ public class CalendarPage extends PageObject {
 				currentDay.click();
 		}
 
+	}
+	
+	public void enterStartDate() {
+		element(startDateInput).waitUntilVisible();
+		startDateInput.click();
+	}
+
+	public void enterEndDate() {
+		element(endDateInput).waitUntilVisible();
+		endDateInput.click();
 	}
 
 }

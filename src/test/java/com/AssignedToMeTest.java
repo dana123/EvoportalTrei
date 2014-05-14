@@ -15,7 +15,9 @@ import com.requirements.Application;
 import com.steps.AssignedToMeSteps;
 import com.steps.LogInSteps;
 
-//@Story(Application.Search.AssignedToMe.class)
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+
 @RunWith(ThucydidesRunner.class)
 public class AssignedToMeTest {
 
@@ -26,16 +28,41 @@ public class AssignedToMeTest {
 	@Steps
 	LogInSteps logInSteps;
 	@Steps
-	public AssignedToMeSteps pmUser;
+	public AssignedToMeSteps pmUserSteps;
 
 	@Test
-	public void reject_req() {
+	public void reject_req() throws InterruptedException {
 		logInSteps.openPage();
 		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
-		pmUser.accessNewVacation();
-		pmUser.accessInbox();
-		pmUser.clickOnAnEmployeeLink("delia tripon");
-		pmUser.rejectRequest();
+		pmUserSteps.accessNewVacation();
+		pmUserSteps.accessInbox();
+//		pmUserSteps.openRequest("2351");
+		pmUserSteps.clickOnAnEmployeeLink("encian horatiu");
+//		pmUserSteps.rejectRequest();
+		Thread.sleep(3000);
 	}
+
+	// @Test
+//	public void approve_all_requests() {
+//		logInSteps.openPage();
+//		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
+//		pmUserSteps.accessNewVacation();
+//		pmUserSteps.accessInbox();
+//		pmUserSteps.sellectAllRequests();
+//		pmUserSteps.approveAllRequests();
+//	}
+
+	// @Test
+//	public void reject_req_nav() throws InterruptedException {
+//		logInSteps.openPage();
+//		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
+//		pmUserSteps.accessNewVacation();
+//		pmUserSteps.accessInbox();
+//		// pmUser.navigatePaginator();
+//		pmUserSteps.openRequest("2346");
+//		// pmUser.clickOnAnEmployeeLink("delia tripon");
+//		// pmUser.rejectRequest();
+//		Thread.sleep(3000);
+//	}
 
 }

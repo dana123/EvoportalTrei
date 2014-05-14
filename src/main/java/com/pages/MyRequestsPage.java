@@ -9,8 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.google.inject.spi.Elements;
-
 public class MyRequestsPage extends PageObject {
 
 	@FindBy(css = ".icon-book")
@@ -77,6 +75,7 @@ public class MyRequestsPage extends PageObject {
 		Assert.assertTrue("Table is not displayed", elementIsDisplayed);
 		return elementIsDisplayed;
 	}
+
 
 	public void selectAVacationStatus(String status) {
 
