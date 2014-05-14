@@ -17,11 +17,11 @@ import com.requirements.Application;
 import com.steps.CalendarSteps;
 import com.steps.ChooseNewRequestMenuStep;
 import com.steps.LogInSteps;
-import com.steps.NewRequestSteps;
+import com.steps.NewRequestErrorSteps;
 
 @Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
-public class NewRequestTest {
+public class NewRequestErrorTest {
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
 
@@ -32,7 +32,7 @@ public class NewRequestTest {
 	LogInSteps logInSteps;
 
 	@Steps
-	NewRequestSteps newRequestSteps;
+	NewRequestErrorSteps newRequestErrorSteps;
 	
 	@Steps
 	ChooseNewRequestMenuStep newRequestMenuSteps;
@@ -44,8 +44,8 @@ public class NewRequestTest {
 	public void newRequest() throws ParseException {
 		logInSteps.logIn("horatiuencian", "920X-p0U");
 		newRequestMenuSteps.chooseNewRequestMenu();
-		calendarStep.setDateStep(4, 4, 2014, 4,4,2014);
-		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.");
+		calendarStep.setDateStep(4, 8, 2014, 4,8,2014);
+		newRequestErrorSteps.newRequestStep( "CS", "Your request failed to complete.");
 	}
 
 }

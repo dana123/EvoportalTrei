@@ -8,7 +8,7 @@ import net.thucydides.core.annotations.StepGroup;
 import com.pages.CalendarPage;
 import com.pages.NewVacationRequestPage;
 
-public class NewRequestSteps {
+public class NewRequestErrorSteps {
 
 	NewVacationRequestPage newVacation;
 	CalendarPage calendar;
@@ -24,12 +24,9 @@ public class NewRequestSteps {
 	}
 	@Step
 	public void checkMessage(String message) {
-		newVacation.checkThatYouReceiveTheSuccesMessage(message);
+		newVacation.checkThatYouReceiveTheErrorMessage(message);
 	}
-	@Step
-	public void withdrawRequest() {
-		newVacation.withdrawRequestButton();
-	}
+
 	/**
 	 * @param vacationType
 	 *            Vacation - 'CO', 'CF', 'CS', 'CM']
@@ -42,6 +39,5 @@ public class NewRequestSteps {
 		chooseVacationType(vacationType);
 		saveRequest();
 		checkMessage(message);
-		withdrawRequest();
 	}
 }
