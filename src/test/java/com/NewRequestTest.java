@@ -1,5 +1,7 @@
 package com;
 
+import java.text.ParseException;
+
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
 import net.thucydides.core.annotations.Steps;
@@ -32,8 +34,8 @@ public class NewRequestTest {
 	NewRequestSteps newRequestSteps;
 
 	@Test
-	public void newRequest() {
+	public void newRequest() throws ParseException {
 		logInSteps.logIn("horatiuencian", "920X-p0U");
-		newRequestSteps.newRequestStep("CM", "neata");
+		newRequestSteps.newRequestStep(4, 6, 2014, 4,7,2014, "CM", "neata");
 	}
 }

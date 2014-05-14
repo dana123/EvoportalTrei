@@ -32,7 +32,7 @@ public class NewRequestCommentSteps {
 
 	@Step
 	public void saveRequest() {
-		newVacation.saveNewequestButton();
+		newVacation.saveNewRequestButton();
 	}
 
 	@StepGroup
