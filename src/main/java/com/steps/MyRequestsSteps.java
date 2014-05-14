@@ -52,31 +52,32 @@ public class MyRequestsSteps extends ScenarioSteps {
 	}
 
 	@StepGroup
-	public void filterMyRequests(String...terms) {
-//		logInSteps.openPage();
-//		logInSteps.logIn("alexandruduminciuc", "alexandru87");
+	public void filterMyRequests(String... terms) {
+		// logInSteps.openPage();
+		// logInSteps.logIn("alexandruduminciuc", "alexandru87");
 
 		// New Requests
 
 		clickMyRequestsPage();
-//		checkHolidayCheckBox();
-//		checkVacationWithoutPayment();
-//		checkOneFiveFilter();
-//		checkPending();
-//		applyFiltersOnMyRequests();
+		// checkHolidayCheckBox();
+		// checkVacationWithoutPayment();
+		// checkOneFiveFilter();
+		// checkPending();
+		// applyFiltersOnMyRequests();
+
+		// if (verifyIfTableExists() == 1) {
+		// // verifica corectitudinea datelor
 		
-//		if (verifyIfTableExists() == 1) {
-//			// verifica corectitudinea datelor
-//			
-			lookForElement(terms);
-//			
-//		}
+		lookForElement(terms);
+		//
+		// }
 
 		// Cancel or withdraw requests
 
 	}
+
 	@Step
-	public void lookForElement(String... terms){
+	public void lookForElement(String... terms) {
 		myRequestPage.lookForElement(terms);
 	}
 

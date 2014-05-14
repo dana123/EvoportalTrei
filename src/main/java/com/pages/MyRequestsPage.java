@@ -75,18 +75,22 @@ public class MyRequestsPage extends PageObject {
 		Assert.assertTrue("Table is not displayed", elementIsDisplayed);
 		return elementIsDisplayed;
 	}
-	
-	public void lookForElement(String... terms){
-		boolean found=false;
-		List<WebElement> elements = getDriver().findElements(By.cssSelector("tbody tr"));
-		for (WebElement element : elements){
-			System.out.println(element);
-			if((element.getAttribute("value").toString().toLowerCase()).contains(terms.toString().toLowerCase()));{
-					found=true;
-					break;
+
+	public void lookForElement(String... terms) {
+		boolean found = false;
+		List<WebElement> elements = getDriver().findElements(
+				By.cssSelector("tbody tr"));
+		for (WebElement element : elements) {
+			System.out.println(element.getText()+" " +  found);
+			if ((element.getAttribute("value").toString().toLowerCase())
+					.contains(terms.toString().toLowerCase()))
+				;
+			{
+				found = true;
+				break;
 			}
-			}
-			Assert.assertTrue("The table does not contain the element", found);
-		
+		}
+		Assert.assertTrue("The table does not contain the element", found);
+
 	}
 }
