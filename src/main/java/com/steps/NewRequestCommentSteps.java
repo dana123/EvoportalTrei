@@ -5,7 +5,7 @@ import net.thucydides.core.annotations.StepGroup;
 
 import com.pages.NewVacationRequestPage;
 
-public class NewRequestSteps {
+public class NewRequestCommentSteps {
 
 	NewVacationRequestPage newVacation;
 
@@ -21,26 +21,27 @@ public class NewRequestSteps {
 	}
 
 	@Step
+	public void addComment() {
+		newVacation.clickAddComment();
+	}
+	
+	@Step
+	public void typeComment(String com) {
+		newVacation.tapeComment(com);
+	}
+
+	@Step
 	public void saveRequest() {
 		newVacation.saveNewequestButton();
 	}
 
-//	@Step
-//	public void addComment(String comment) {
-//		newVacation.clickAddComment(comment);
-//	}
-
-	/**
-	 * @param vacationType 
-	 * 				Vacation - 'CO', 
-	 * 				'CF', 'CS', 'CM']
-	 * 	
-	 */
 	@StepGroup
-	public void newRequestStep(String vacationType, String comment) {
+	public void newRequestStep(String vacationType, String com) {
 		chooseNewRequestMenu();
 		chooseVacationType(vacationType);
-//		addComment(comment);
-		 saveRequest();
+		addComment();
+		typeComment(com);
+		saveRequest();
+
 	}
 }
