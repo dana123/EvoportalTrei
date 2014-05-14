@@ -52,7 +52,7 @@ public class MyRequestsSteps extends ScenarioSteps {
 	}
 
 	@StepGroup
-	public void filterMyRequests(String... terms) {
+	public void filterMyRequests(String terms) {
 		// logInSteps.openPage();
 		// logInSteps.logIn("alexandruduminciuc", "alexandru87");
 
@@ -63,7 +63,7 @@ public class MyRequestsSteps extends ScenarioSteps {
 		// checkVacationWithoutPayment();
 		// checkOneFiveFilter();
 		// checkPending();
-		// applyFiltersOnMyRequests();
+		//applyFiltersOnMyRequests();
 
 		// if (verifyIfTableExists() == 1) {
 		// // verifica corectitudinea datelor
@@ -77,8 +77,10 @@ public class MyRequestsSteps extends ScenarioSteps {
 	}
 
 	@Step
-	public void lookForElement(String... terms) {
-		myRequestPage.lookForElement(terms);
+	public void lookForElement(String terms) {
+		myRequestPage.selectAVacationStatus(terms);
+		applyFiltersOnMyRequests();
+		myRequestPage.verifyIfTheFilteredTableContainsAVacationsWithOtherStatusThanFilter(terms);
 	}
 
 }

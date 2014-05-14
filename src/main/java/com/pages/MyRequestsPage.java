@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import com.google.inject.spi.Elements;
+
 public class MyRequestsPage extends PageObject {
 
 	@FindBy(css = ".icon-book")
@@ -76,21 +78,68 @@ public class MyRequestsPage extends PageObject {
 		return elementIsDisplayed;
 	}
 
-	public void lookForElement(String... terms) {
-		boolean found = false;
-		List<WebElement> elements = getDriver().findElements(
-				By.cssSelector("tbody tr"));
-		for (WebElement element : elements) {
-			System.out.println(element.getText()+" " +  found);
-			if ((element.getAttribute("value").toString().toLowerCase())
-					.contains(terms.toString().toLowerCase()))
-				;
-			{
-				found = true;
+	public void selectAVacationStatus(String status) {
+
+		String var = null;
+		switch (status) {
+		case "Pending":
+			var = "PENDINGCheckbox";
+			break;
+		case "Approved":
+			var = "APPROVEDCheckbox";
+			break;
+		case "Rejected":
+			var = "REJECTEDCheckbox";
+			break;
+		case "Withdrawn":
+			var = "WITHDRAWNCheckbox";
+			break;
+		case "Canceled":
+			var = "CANCELEDCheckbox";
+			break;
+
+		}
+		WebElement element = getDriver()
+				.findElement(
+						By.cssSelector(String
+								.format("#_evovacation_WAR_EvoVacationportlet_"
+										+ var)));
+
+		if (!(element.isSelected()))
+			System.out.println(element);
+		element.click();
+	}
+
+	// boolean found = false;
+	// List<WebElement> elements = getDriver()
+	// .findElements(
+	// By.cssSelector("div[class='aui-column-content  aui-column-content-last column-three-content column-center-content '] div[class='column-content'] label"));
+	// for (WebElement element : elements) {
+	// System.out.println(element.getCssValue("value") + " " + found);
+	// if ((element.getText()).toString().equalsIgnoreCase((status)))
+	// {
+	// found = true;
+	// element.click();
+	// System.out.println(" "+found);
+	// break;
+	// }
+	// }
+	// Assert.assertTrue("The checkbox was not found", found);
+
+	public void verifyIfTheFilteredTableContainsAVacationsWithOtherStatusThanFilter(
+			String status) {
+
+		boolean foundInTable = true;
+		List<WebElement> tableElements = getDriver()
+				.findElements(
+						By.cssSelector("td[class*='col-my.request.column.header.status'] a[href*='vacationId']"));
+		for (WebElement tableElement : tableElements) {
+			if (!(tableElement.getText().toString().equalsIgnoreCase(status))) {
+				foundInTable = false;
 				break;
 			}
-		}
-		Assert.assertTrue("The table does not contain the element", found);
+			Assert.assertTrue("The filter is not working", foundInTable);
 
+		}
 	}
 }
