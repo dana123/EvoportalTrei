@@ -47,7 +47,7 @@ public class LogInSteps extends ScenarioSteps {
 		clickLogIn();
 		newRequestMenu();
 	}
-
+	
 	@Step
 	public void newRequestMenu() {
 		logInPage.clickNewVacationMenu();
