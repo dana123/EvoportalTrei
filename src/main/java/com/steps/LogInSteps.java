@@ -43,7 +43,6 @@ public class LogInSteps extends ScenarioSteps {
 		logInPage.clickNewVacationMenu();
 	}
 
-	// github.com/dana123/EvoportalTrei.git
 	@StepGroup
 	public void logIn(String user, String pass) {
 		openPage();
@@ -52,13 +51,11 @@ public class LogInSteps extends ScenarioSteps {
 		enterPassword(pass);
 		clickLogIn();
 		clickNewVacationMenu();
-
-		// newRequestMenu();
-		// github.com/dana123/EvoportalTrei.git
 	}
 
-	// @Step
-	// public void newRequestMenu() {
-	// logInPage.clickNewVacationMenu();
-	// }
+	@Step
+	public void newRequestMenu() {
+		logInPage.clickNewVacationMenu();
+	}
 }
+// github.com/dana123/EvoportalTrei.git

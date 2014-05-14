@@ -13,10 +13,11 @@ import org.openqa.selenium.WebDriver;
 
 import com.requirements.Application;
 import com.steps.LogInSteps;
+import com.steps.NewRequestCommentSteps;
 
 @Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
-public class LoginTest {
+public class NewRequestCommentTest {
 
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
@@ -26,9 +27,20 @@ public class LoginTest {
 
 	@Steps
 	LogInSteps logInSteps;
-	
+
+	// @Steps
+	// NewRequestSteps newRequestSteps;
+
+	@Steps
+	NewRequestCommentSteps newRequestCommentSteps;
+
 	@Test
-	public void loginTest() {
+	public void newRequest() {
 		logInSteps.logIn("horatiuencian", "920X-p0U");
+		// newRequestSteps.newRequestStep("Vacation without payment");
+//		newRequestCommentSteps.chooseVacationType("Vacation without payment");
+//		newRequestCommentSteps.addComment();
+//		newRequestCommentSteps.saveRequest();
+		newRequestCommentSteps.newRequestStep("Vacation without payment", "neata");
 	}
 }

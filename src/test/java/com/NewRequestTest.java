@@ -34,6 +34,6 @@ public class NewRequestTest {
 	@Test
 	public void newRequest() {
 		logInSteps.logIn("horatiuencian", "920X-p0U");
-		newRequestSteps.newRequestStep("sick leave");
+		newRequestSteps.newRequestStep("CM", "neata");
 	}
 }
