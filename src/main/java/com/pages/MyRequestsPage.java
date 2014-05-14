@@ -13,6 +13,9 @@ public class MyRequestsPage extends PageObject {
 	@FindBy(css = "#_evovacation_WAR_EvoVacationportlet_HOLIDAYCheckbox")
 	private WebElement holidayCheckBox;
 
+	@FindBy(css = "#_evovacation_WAR_EvoVacationportlet_VACATION_WITHOUT_PAYMENTCheckbox")
+	private WebElement vacationWithoutPayment;
+	
 	public void clickMyRequestsPage() {
 		element(myRequestsLink).waitUntilVisible();
 		myRequestsLink.click();
@@ -22,6 +25,11 @@ public class MyRequestsPage extends PageObject {
 	public void clickHolidayCheckBox() {
 		element(holidayCheckBox).waitUntilVisible();
 		holidayCheckBox.click();
+
+	}
+	public void clickVacationWithoutPayment() {
+		element(vacationWithoutPayment).waitUntilVisible();
+		vacationWithoutPayment.click();
 
 	}
 

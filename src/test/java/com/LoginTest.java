@@ -13,7 +13,6 @@ import org.openqa.selenium.WebDriver;
 
 import com.requirements.Application;
 import com.steps.LogInSteps;
-import com.steps.MyRequestsSteps;
 
 @Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
