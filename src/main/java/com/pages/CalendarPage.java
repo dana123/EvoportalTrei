@@ -12,6 +12,12 @@ import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.WebElement;
 
 public class CalendarPage extends PageObject {
+	
+	@FindBy(css = "input[name='startDate']")
+	private WebElement startDateInput;
+
+	@FindBy(css = "input[name='endDate']")
+	private WebElement endDateInput;
 
 	@FindBy(css = "div[aria-hidden='false'] .aui-calendar-title")
 	private WebElement calendarTitle;
@@ -54,6 +60,16 @@ public class CalendarPage extends PageObject {
 				currentDay.click();
 		}
 
+	}
+	
+	public void enterStartDate() {
+		element(startDateInput).waitUntilVisible();
+		startDateInput.click();
+	}
+
+	public void enterEndDate() {
+		element(endDateInput).waitUntilVisible();
+		endDateInput.click();
 	}
 
 }

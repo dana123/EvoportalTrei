@@ -14,13 +14,14 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import com.requirements.Application;
+import com.steps.CalendarSteps;
+import com.steps.ChooseNewRequestMenuStep;
 import com.steps.LogInSteps;
 import com.steps.NewRequestSteps;
 
 @Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
 public class NewRequestTest {
-
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
 
@@ -32,10 +33,19 @@ public class NewRequestTest {
 
 	@Steps
 	NewRequestSteps newRequestSteps;
+	
+	@Steps
+	ChooseNewRequestMenuStep newRequestMenuSteps;
+	
+	@Steps
+	CalendarSteps calendarStep;
 
 	@Test
 	public void newRequest() throws ParseException {
 		logInSteps.logIn("horatiuencian", "920X-p0U");
-		newRequestSteps.newRequestStep(4, 6, 2014, 4,7,2014, "CM", "neata");
+		newRequestMenuSteps.chooseNewRequestMenu();
+		calendarStep.setDateStep(4, 6, 2014, 4,7,2014);
+		newRequestSteps.newRequestStep( "CM");
 	}
+
 }
