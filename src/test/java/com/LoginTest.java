@@ -29,7 +29,6 @@ public class LoginTest {
 	
 	@Test
 	public void loginTest() {
-		logInSteps.openPage();
-		logInSteps.logIn("alexandruduminciuc", "alexandru87");
+		logInSteps.logIn("horatiuencian", "920X-p0U");
 	}
 }

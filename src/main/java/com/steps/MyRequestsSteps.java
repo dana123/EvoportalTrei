@@ -23,5 +23,10 @@ public class MyRequestsSteps extends ScenarioSteps{
 		myRequestPage.clickVacationWithoutPayment();
 	}
 	
-	
+	@Step
+	public void applyFiltersOnMyRequests(){
+		myRequestPage.clickApplyFilterButton();
+	}
+
+			
 }

@@ -19,7 +19,7 @@ public class LogInPage extends PageObject {
 	@FindBy(css = ".aui-button-input.aui-button-input-submit")
 	private WebElement logInButton;
 
-	@FindBy(css = "a[href='http://192.168.1.68:9080/web/lt/new-vacation']")
+	@FindBy(css = "a[href*='new-vacation']")
 	private WebElement newVacationMenu;
 
 	
