@@ -52,10 +52,10 @@ public class FreeDaysHistoryPage extends PageObject {
 		freeDaysHistoryButton.click();
 	}
 
-	public void clickAniversaryCheckBox(){
+	public void clickAniversaryCheckBox() {
 		element(aniversaryCheckBox).waitUntilVisible();
 		aniversaryCheckBox.click();
-	} 
+	}
 	
 	
 	
@@ -90,23 +90,6 @@ public class FreeDaysHistoryPage extends PageObject {
 		}
 
 	}
-
-	// public void selectCheckButton(String... terms) {
-	// System.out.println("x");
-	// WebElement element = getTheSearchedCheckButton(terms);
-	// System.out.println("y");
-	// System.out.println(element.getText());
-	// WebElement checkButton = element.findElement(By
-	// .cssSelector(".aui-choice-label"));
-	//
-	// System.out.println(checkButton.getText());
-	// System.out.println("z");
-	// if (element != null) {
-	// checkButton.click();
-	// } else {
-	// Assert.fail("The checkButton was not found!!!!");
-	// }
-	// }
 
 	public void clickOnApplyFilters() {
 		applyFilters.click();

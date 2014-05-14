@@ -1,11 +1,9 @@
 package com.pages;
 
-import org.openqa.selenium.WebElement;
-
-import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
-import net.thucydides.core.pages.WebElementFacade;
+
+import org.openqa.selenium.WebElement;
 
 public class LogInPage extends PageObject {
 
@@ -21,7 +19,7 @@ public class LogInPage extends PageObject {
 	@FindBy(css = ".aui-button-input.aui-button-input-submit")
 	private WebElement logInButton;
 
-	@FindBy(css = "a[href='http://192.168.1.68:9080/web/lt/new-vacation']")
+	@FindBy(css = "a[href*='new-vacation']")
 	private WebElement newVacationMenu;
 
 	

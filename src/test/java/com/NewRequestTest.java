@@ -13,10 +13,11 @@ import org.openqa.selenium.WebDriver;
 
 import com.requirements.Application;
 import com.steps.LogInSteps;
+import com.steps.NewRequestSteps;
 
 @Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
-public class LoginTest {
+public class NewRequestTest {
 
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
@@ -27,9 +28,12 @@ public class LoginTest {
 	@Steps
 	LogInSteps logInSteps;
 
-	@Test
-	public void loginTest() {
-		logInSteps.logIn("horatiuencian", "920X-p0U");
+	@Steps
+	NewRequestSteps newRequestSteps;
 
+	@Test
+	public void newRequest() {
+		logInSteps.logIn("horatiuencian", "920X-p0U");
+		newRequestSteps.newRequestStep("sick leave");
 	}
 }

@@ -12,11 +12,12 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import com.requirements.Application;
+import com.steps.FreeDaysHistorySteps;
 import com.steps.LogInSteps;
 
 @Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
-public class LoginTest {
+public class FreeDaysHistoryTest {
 
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
@@ -27,9 +28,16 @@ public class LoginTest {
 	@Steps
 	LogInSteps logInSteps;
 
-	@Test
-	public void loginTest() {
-		logInSteps.logIn("horatiuencian", "920X-p0U");
+	@Steps
+	FreeDaysHistorySteps freeDaysHistorySteps;
 
+	@Test
+	public void filterRequests() {
+		logInSteps.openPage();
+		logInSteps.logIn("horatiuencian", "920X-p0U");
+		
+		freeDaysHistorySteps.clickFreeDaysHistoryMenu();
+		freeDaysHistorySteps.selectAFilterType("Vacation days");
+		freeDaysHistorySteps.clickOnApplyFilters();
 	}
 }
