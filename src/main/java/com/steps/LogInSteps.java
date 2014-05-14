@@ -39,12 +39,18 @@ public class LogInSteps extends ScenarioSteps {
 		logInPage.clickLogIn();
 	}
 	
+	@Step
+	public void clickNewVacationMenu(){
+		logInPage.clickNewVacationMenu();
+	}
+	
 	@StepGroup
 	public void logIn(String user, String pass){
 		clickSignIn();
 		enterUserName(user);
 		enterPassword(pass); 
 		clickLogIn();
+		clickNewVacationMenu();
 	}
 
 }
