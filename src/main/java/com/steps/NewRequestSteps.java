@@ -22,14 +22,32 @@ public class NewRequestSteps {
 	public void saveRequest() {
 		newVacation.saveNewRequestButton();
 	}
+
 	@Step
 	public void checkMessage(String message) {
 		newVacation.checkThatYouReceiveTheSuccesMessage(message);
 	}
+
+	@Step
+	public void checkErrorMessage(String message) {
+		newVacation.checkThatYouReceiveTheErrorMessage(message);
+	}
+
 	@Step
 	public void withdrawRequest() {
 		newVacation.withdrawRequestButton();
 	}
+
+	@Step
+	public String getVacationId() {
+		return newVacation.getVacationId();
+	}
+	
+	@Step
+	public void goToRequest(String vacationId){
+		newVacation.goToRequest(vacationId);
+	}
+
 	/**
 	 * @param vacationType
 	 *            Vacation - 'CO', 'CF', 'CS', 'CM']
@@ -37,11 +55,15 @@ public class NewRequestSteps {
 	 * 
 	 */
 	@StepGroup
-	public void newRequestStep(String vacationType, String message)
-			throws ParseException {
+	public void newRequestStep(String vacationType, String message,
+			boolean error) throws ParseException {
 		chooseVacationType(vacationType);
 		saveRequest();
-		checkMessage(message);
-		withdrawRequest();
+		if (error) {
+			checkErrorMessage(message);
+		} else {
+			checkMessage(message);
+		}
+		// withdrawRequest();
 	}
 }

@@ -17,6 +17,7 @@ import com.requirements.Application;
 import com.steps.CalendarSteps;
 import com.steps.ChooseNewRequestMenuStep;
 import com.steps.LogInSteps;
+import com.steps.MyRequestsSteps;
 import com.steps.NewRequestSteps;
 
 @Story(Application.Authentication.LogIn.class)
@@ -39,13 +40,27 @@ public class NewRequestTest {
 	
 	@Steps
 	CalendarSteps calendarStep;
+	
+	@Steps
+	MyRequestsSteps myRequestsSteps;
 
 	@Test
-	public void newRequest() throws ParseException {
+	public void newRequestPart1() throws ParseException {
 		logInSteps.logIn("horatiuencian", "920X-p0U");
+		
 		newRequestMenuSteps.chooseNewRequestMenu();
-		calendarStep.setDateStep(4, 4, 2014, 4,4,2014);
-		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.");
+		calendarStep.setDateStep(4,4,2014, 4,4,2014);
+		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.", false);
+		String vacationId = newRequestSteps.getVacationId();
+
+		newRequestMenuSteps.chooseNewRequestMenu();
+		calendarStep.setDateStep(4,4,2014, 4,4,2014);
+		newRequestSteps.newRequestStep( "CS", "Your request failed to complete.", true);
+		
+		//myRequestsSteps.clickMyRequestsPage();
+		
+		newRequestSteps.goToRequest(vacationId);
+		newRequestSteps.withdrawRequest();
 	}
 
 }
