@@ -21,20 +21,17 @@ public class FreeDaysHistorySteps extends ScenarioSteps {
 	}
 
 	@Step
-	public void selectCheckButton(String... terms) {
-		freeDaysHistoryPage.clickOnCheckButton(terms);
-	}
-
-	@Step
 	public void clickOnApplyFilters() {
 		freeDaysHistoryPage.clickOnApplyFilters();
 	}
 
+//	check if free days history table exists
 	@Step
-	public void clickAniversaryCheckBox() {
-		freeDaysHistoryPage.clickAniversaryCheckBox();
+	public void checkHistoryTable(){
+		freeDaysHistoryPage.checkIfHistoryTableExists();
 	}
-
+	
+	
 	@Step
 	public void selectAFilterType(String vacationType) {
 		switch (vacationType) {
@@ -52,12 +49,15 @@ public class FreeDaysHistorySteps extends ScenarioSteps {
 			break;
 
 		}
-		WebElement element = getDriver().findElement(By.cssSelector(String.format("#_evovacation_WAR_EvoVacationportlet_"+ var)));
-		
+		WebElement element = getDriver()
+				.findElement(
+						By.cssSelector(String
+								.format("#_evovacation_WAR_EvoVacationportlet_"
+										+ var)));
+
 		if (!(element.isSelected()))
 			System.out.println(element);
 		element.click();
 	}
 
-	
 }
