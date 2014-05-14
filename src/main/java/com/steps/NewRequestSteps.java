@@ -22,6 +22,10 @@ public class NewRequestSteps {
 	public void saveRequest() {
 		newVacation.saveNewRequestButton();
 	}
+	@Step
+	public void checkMessage(String message) {
+		newVacation.checkThatYouReceiveTheErrorMessage(message);
+	}
 
 	/**
 	 * @param vacationType
@@ -30,9 +34,10 @@ public class NewRequestSteps {
 	 * 
 	 */
 	@StepGroup
-	public void newRequestStep(String vacationType)
+	public void newRequestStep(String vacationType, String message)
 			throws ParseException {
 		chooseVacationType(vacationType);
 		saveRequest();
+		checkMessage(message);
 	}
 }
