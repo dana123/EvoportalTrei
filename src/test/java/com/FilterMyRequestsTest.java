@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
+import com.pages.CalendarPage;
 import com.steps.LogInSteps;
 import com.steps.MyRequestsSteps;
 
@@ -21,20 +22,30 @@ public class FilterMyRequestsTest {
 	@ManagedPages(defaultUrl = "http://192.168.1.68:9080/home")
 	public Pages pages;
 
-	@Steps
-	LogInSteps logInSteps;
+	
 	
 	@Steps
-	MyRequestsSteps myRequests;
+	CalendarPage RequestVacation;
 	
-	@Test
-	public void filterMyRequests() {
-		logInSteps.openPage();
-		logInSteps.logIn("alexandruduminciuc", "alexandru87");
-		myRequests.clickMyRequestsPage();
-		myRequests.checkHolidayCheckBox();
-		myRequests.checkVacationWithoutPayment();
-		myRequests.applyFiltersOnMyRequests();
 	
-	}
+	
+//	@Test
+//	public void filterMyRequests() {
+//		logInSteps.openPage();
+//		logInSteps.logIn("alexandruduminciuc", "alexandru87");
+//		
+//		//New Requests
+//		
+//		myRequests.clickMyRequestsPage();
+//		myRequests.checkHolidayCheckBox();
+//		myRequests.checkVacationWithoutPayment();
+//		myRequests.checkOneFiveFilter();
+//		myRequests.applyFiltersOnMyRequests();
+//		if(myRequests.verifyIfTableExists()==1){
+//			//cauta corectitudinea datelor
+//		}
+//		
+//		//Cancel or withdraw requests
+//		
+//	}
 }
