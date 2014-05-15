@@ -41,59 +41,59 @@ public class AssignedToMeTest {
 	@Steps
 	CalendarSteps calendarStep;
 
+	 //@Test
+	 public void approve_req() throws InterruptedException {
+	 logInSteps.openPage();
+	 logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
+	 pmUserSteps.accessNewVacation();
+	 pmUserSteps.accessInbox();
+	 // pmUserSteps.openRequest("2351");
+	 pmUserSteps.clickOnAnEmployeeLink("delia tripon");
+	 pmUserSteps.approveRequest();
+	 Thread.sleep(3000);
+	 }
 	// @Test
-	// public void approve_req() throws InterruptedException {
-	// logInSteps.openPage();
-	// logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
-	// pmUserSteps.accessNewVacation();
-	// pmUserSteps.accessInbox();
-	// // pmUserSteps.openRequest("2351");
-	// pmUserSteps.clickOnAnEmployeeLink("delia tripon");
-	// pmUserSteps.approveRequest();
-	// Thread.sleep(3000);
-	// }
+	 public void reject_req() throws InterruptedException {
+	 logInSteps.openPage();
+	 logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
+	 pmUserSteps.accessNewVacation();
+	 pmUserSteps.accessInbox();
+	 // pmUserSteps.openRequest("2351");
+	 pmUserSteps.clickOnAnEmployeeLink("delia tripon");
+	 pmUserSteps.rejectRequest();
+	 Thread.sleep(3000);
+	 }
 	// @Test
-	// public void reject_req() throws InterruptedException {
-	// logInSteps.openPage();
-	// logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
-	// pmUserSteps.accessNewVacation();
-	// pmUserSteps.accessInbox();
-	// // pmUserSteps.openRequest("2351");
-	// pmUserSteps.clickOnAnEmployeeLink("delia tripon");
-	// pmUserSteps.rejectRequest();
-	// Thread.sleep(3000);
-	// }
+	 public void approve_all_requests() {
+	 logInSteps.openPage();
+	 logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
+	 pmUserSteps.accessNewVacation();
+	 pmUserSteps.accessInbox();
+	 pmUserSteps.sellectAllRequests();
+	 pmUserSteps.approveAllRequests();
+	 }
 	// @Test
-	// public void approve_all_requests() {
-	// logInSteps.openPage();
-	// logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
-	// pmUserSteps.accessNewVacation();
-	// pmUserSteps.accessInbox();
-	// pmUserSteps.sellectAllRequests();
-	// pmUserSteps.approveAllRequests();
-	// }
-	// @Test
-	// public void reject_all_requests() {
-	// logInSteps.openPage();
-	// logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
-	// pmUserSteps.accessNewVacation();
-	// pmUserSteps.accessInbox();
-	// pmUserSteps.sellectAllRequests();
-	// pmUserSteps.rejectAllRequests();
-	// }
+	 public void reject_all_requests() {
+	 logInSteps.openPage();
+	 logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
+	 pmUserSteps.accessNewVacation();
+	 pmUserSteps.accessInbox();
+	 pmUserSteps.sellectAllRequests();
+	 pmUserSteps.rejectAllRequests();
+	 }
 
 	// @Test??
-	// public void reject_req_nav() throws InterruptedException {
-	// logInSteps.openPage();
-	// logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
-	// pmUserSteps.accessNewVacation();
-	// pmUserSteps.accessInbox();
-	// // pmUser.navigatePaginator();
-	// pmUserSteps.openRequest("2346");
-	// // pmUser.clickOnAnEmployeeLink("delia tripon");
-	// // pmUser.rejectRequest();
-	// Thread.sleep(3000);
-	// }
+	 public void reject_req_nav() throws InterruptedException {
+	 logInSteps.openPage();
+	 logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
+	 pmUserSteps.accessNewVacation();
+	 pmUserSteps.accessInbox();
+	 // pmUser.navigatePaginator();
+	 pmUserSteps.openRequest("2346");
+	 // pmUser.clickOnAnEmployeeLink("delia tripon");
+	 // pmUser.rejectRequest();
+	 Thread.sleep(3000);
+	 }
 
 	
 	@Test
@@ -102,7 +102,7 @@ public class AssignedToMeTest {
 		newRequestMenuSteps.chooseNewRequestMenu();
 		calendarStep.setDateStep(12, 6, 2014, 12, 8, 2014);
 		newRequestSteps
-				.newRequestStep("CO", "Your request failed to complete.");
+				.newRequestStep("CO", "Your request failed to complete.", false);
 
 		// String vacationID = pmUserSteps.clickSave();
 		// System.out.println(vacationID);
