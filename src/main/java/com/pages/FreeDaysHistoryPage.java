@@ -1,14 +1,11 @@
 package com.pages;
 
-import java.util.List;
+import net.thucydides.core.annotations.findby.FindBy;
+import net.thucydides.core.pages.PageObject;
 
-import org.apache.commons.exec.util.StringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import net.thucydides.core.annotations.findby.FindBy;
-import net.thucydides.core.pages.PageObject;
 
 public class FreeDaysHistoryPage extends PageObject {
 
