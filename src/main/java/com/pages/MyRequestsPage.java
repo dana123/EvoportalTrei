@@ -76,37 +76,65 @@ public class MyRequestsPage extends PageObject {
 		return elementIsDisplayed;
 	}
 
-
-	public void selectAVacationStatus(String status) {
+	public void selectAVacationStatus(String... terms) {
 
 		String var = null;
-		switch (status) {
-		case "Pending":
-			var = "PENDINGCheckbox";
-			break;
-		case "Approved":
-			var = "APPROVEDCheckbox";
-			break;
-		case "Rejected":
-			var = "REJECTEDCheckbox";
-			break;
-		case "Withdrawn":
-			var = "WITHDRAWNCheckbox";
-			break;
-		case "Canceled":
-			var = "CANCELEDCheckbox";
-			break;
+		for (String status : terms) {
 
+			switch (status) {
+			case "Pending":
+				var = "PENDINGCheckbox";
+				break;
+			case "Approved":
+				var = "APPROVEDCheckbox";
+				break;
+			case "Rejected":
+				var = "REJECTEDCheckbox";
+				break;
+			case "Withdrawn":
+				var = "WITHDRAWNCheckbox";
+				break;
+			case "Canceled":
+				var = "CANCELEDCheckbox";
+				break;
+			case " 1 - 5 ":
+				var = "FIFTHCheckbox";
+				break;
+			case " 6 - 10 ":
+				var = "TENTHCheckbox";
+				break;
+			case " 11 - 20 ":
+				var = "TWENTIETHCheckbox";
+				break;
+			case " 21 - 50 ":
+				var = "FIFTIETHCheckbox";
+				break;
+			case " 51 + ":
+				var = "RESTCheckbox";
+				break;
+			case " Holiday ":
+				var = "HOLIDAYCheckbox";
+				break;
+			case " Vacation Without Payment ":
+				var = "VACATION_WITHOUT_PAYMENTCheckbox";
+				break;
+			case "Vacation Without Payment":
+				var = "SPECIAL_VACATIONCheckbox";
+				break;
+			case " Sick Leave ":
+				var = "SICK_LEAVECheckbox";
+				break;
+
+			}
+			WebElement element = getDriver().findElement(
+					By.cssSelector(String
+							.format("#_evovacation_WAR_EvoVacationportlet_"
+									+ var)));
+
+			if (!(element.isSelected()))
+				System.out.println(element);
+			element.click();
 		}
-		WebElement element = getDriver()
-				.findElement(
-						By.cssSelector(String
-								.format("#_evovacation_WAR_EvoVacationportlet_"
-										+ var)));
-
-		if (!(element.isSelected()))
-			System.out.println(element);
-		element.click();
 	}
 
 	// boolean found = false;
@@ -125,20 +153,53 @@ public class MyRequestsPage extends PageObject {
 	// }
 	// Assert.assertTrue("The checkbox was not found", found);
 
-	public void verifyIfTheFilteredTableContainsAVacationsWithOtherStatusThanFilter(
-			String status) {
-
-		boolean foundInTable = true;
-		List<WebElement> tableElements = getDriver()
-				.findElements(
-						By.cssSelector("td[class*='col-my.request.column.header.status'] a[href*='vacationId']"));
-		for (WebElement tableElement : tableElements) {
-			if (!(tableElement.getText().toString().equalsIgnoreCase(status))) {
-				foundInTable = false;
-				break;
+	public void verifySearchResultsContainsItem(String... terms) {
+		String noOfPagesContainer = getDriver()
+				.findElement(
+						By.cssSelector("div.page-links > span.aui-paginator-current-page-report.aui-paginator-total"))
+				.getText().trim();
+		int noOfPages = SummaryPage.getAllIntegerNumbersFromString(
+				noOfPagesContainer).get(1);
+		for (int i = 0; i < noOfPages; i++) {
+			List<WebElement> searchResults = getDriver()
+					.findElements(
+							By.cssSelector("table.taglib-search-iterator tr.results-row"));
+			for (WebElement searchResult : searchResults) {
+				if ($(searchResult).isCurrentlyVisible()) {
+					for (String term : terms) {
+						if (!searchResult.getText().toLowerCase()
+								.contains(term.toLowerCase())) {
+							Assert.fail(String
+									.format("The '%s' search result item does not contain '%s'!",
+											searchResult.getText(), term));
+						}
+					}
+				}
 			}
-			Assert.assertTrue("The filter is not working", foundInTable);
-
+			if (i < noOfPages - 1) {
+				getDriver()
+						.findElement(
+								By.cssSelector("div.page-links > a.aui-paginator-link.aui-paginator-next-link"))
+						.click();
+				waitFor(ExpectedConditions
+						.textToBePresentInElement(
+								By.cssSelector("div.page-links > span.aui-paginator-current-page-report.aui-paginator-total"),
+								String.format("(%d of %d)", i + 2, noOfPages)));
+				waitABit(2000);
+			}
 		}
 	}
+
+	// boolean foundInTable = true;
+	// List<WebElement> tableElements = getDriver()
+	// .findElements(
+	// By.cssSelector("td[class*='col-my.request.column.header.status'] a[href*='vacationId']"));
+	// for (WebElement tableElement : tableElements) {
+	// if (!(tableElement.getText().toString().equalsIgnoreCase(status))) {
+	// foundInTable = false;
+	// break;
+	// }
+	// Assert.assertTrue("The filter is not working", foundInTable);
+
+	// }
 }

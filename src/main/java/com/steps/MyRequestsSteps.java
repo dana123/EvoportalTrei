@@ -52,7 +52,7 @@ public class MyRequestsSteps extends ScenarioSteps {
 	}
 
 	@StepGroup
-	public void filterMyRequests(String terms) {
+	public void filterMyRequests(String... terms) {
 		// logInSteps.openPage();
 		// logInSteps.logIn("alexandruduminciuc", "alexandru87");
 
@@ -77,10 +77,10 @@ public class MyRequestsSteps extends ScenarioSteps {
 	}
 
 	@Step
-	public void lookForElement(String terms) {
+	public void lookForElement(String... terms) {
 		myRequestPage.selectAVacationStatus(terms);
 		applyFiltersOnMyRequests();
-		myRequestPage.verifyIfTheFilteredTableContainsAVacationsWithOtherStatusThanFilter(terms);
+		myRequestPage.verifySearchResultsContainsItem(terms);
 	}
 
 }
