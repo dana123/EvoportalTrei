@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MyRequestsPage extends PageObject {
 
@@ -97,31 +98,31 @@ public class MyRequestsPage extends PageObject {
 			case "Canceled":
 				var = "CANCELEDCheckbox";
 				break;
-			case " 1 - 5 ":
+			case "1 - 5":
 				var = "FIFTHCheckbox";
 				break;
-			case " 6 - 10 ":
+			case "6 - 10":
 				var = "TENTHCheckbox";
 				break;
-			case " 11 - 20 ":
+			case "11 - 20":
 				var = "TWENTIETHCheckbox";
 				break;
-			case " 21 - 50 ":
+			case "21 - 50":
 				var = "FIFTIETHCheckbox";
 				break;
-			case " 51 + ":
+			case "51 +":
 				var = "RESTCheckbox";
 				break;
-			case " Holiday ":
+			case "Holiday":
 				var = "HOLIDAYCheckbox";
 				break;
-			case " Vacation Without Payment ":
+			case "Vacation Without Payment":
 				var = "VACATION_WITHOUT_PAYMENTCheckbox";
 				break;
-			case "Vacation Without Payment":
+			case "Special Vacation":
 				var = "SPECIAL_VACATIONCheckbox";
 				break;
-			case " Sick Leave ":
+			case "Sick Leave":
 				var = "SICK_LEAVECheckbox";
 				break;
 
@@ -158,20 +159,42 @@ public class MyRequestsPage extends PageObject {
 				.findElement(
 						By.cssSelector("div.page-links > span.aui-paginator-current-page-report.aui-paginator-total"))
 				.getText().trim();
-		int noOfPages = SummaryPage.getAllIntegerNumbersFromString(
+		System.out.println(noOfPagesContainer);
+		int noOfPages = tools.StringUtils.getAllIntegerNumbersFromString(
 				noOfPagesContainer).get(1);
+		System.out.println(noOfPages);
 		for (int i = 0; i < noOfPages; i++) {
 			List<WebElement> searchResults = getDriver()
 					.findElements(
 							By.cssSelector("table.taglib-search-iterator tr.results-row"));
+			System.out.println(searchResults.size());
 			for (WebElement searchResult : searchResults) {
+				System.out.println(searchResult.getText());
+				
 				if ($(searchResult).isCurrentlyVisible()) {
 					for (String term : terms) {
-						if (!searchResult.getText().toLowerCase()
+						
+						if (term.contains("-")){
+							String daysRange = term;
+							System.out.println(daysRange);
+							daysRange.trim();
+							System.out.println(" " + daysRange);
+							int lowLimit = tools.StringUtils.getAllIntegerNumbersFromString(
+									daysRange).get(0);
+							int highLimit = tools.StringUtils.getAllIntegerNumbersFromString(
+									daysRange).get(1);
+							int number = tools.StringUtils.getAllIntegerNumbersFromString(searchResult.toString()).get(16);
+							System.out.println(number);
+							if (!(number>=lowLimit && number<=highLimit)){
+						}else{
+							
+							if (!searchResult.getText().toLowerCase()
+						
 								.contains(term.toLowerCase())) {
 							Assert.fail(String
 									.format("The '%s' search result item does not contain '%s'!",
 											searchResult.getText(), term));
+							}
 						}
 					}
 				}
@@ -187,7 +210,7 @@ public class MyRequestsPage extends PageObject {
 								String.format("(%d of %d)", i + 2, noOfPages)));
 				waitABit(2000);
 			}
-		}
+		
 	}
 
 	// boolean foundInTable = true;
@@ -202,4 +225,6 @@ public class MyRequestsPage extends PageObject {
 	// Assert.assertTrue("The filter is not working", foundInTable);
 
 	// }
+}
+	}
 }

@@ -8,6 +8,7 @@ import net.thucydides.core.steps.ScenarioSteps;
 import com.pages.MyRequestsPage;
 
 public class MyRequestsSteps extends ScenarioSteps {
+	private static final long serialVersionUID = 1L;
 
 	MyRequestsPage myRequestPage;
 
@@ -19,30 +20,30 @@ public class MyRequestsSteps extends ScenarioSteps {
 		myRequestPage.clickMyRequestsPage();
 	}
 
-	@Step
-	public void checkHolidayCheckBox() {
-		myRequestPage.clickHolidayCheckBox();
-	}
-
-	@Step
-	public void checkVacationWithoutPayment() {
-		myRequestPage.clickVacationWithoutPayment();
-	}
-
-	@Step
-	public void checkOneFiveFilter() {
-		myRequestPage.checkOneFiveDaysFilter();
-	}
-
-	@Step
-	public void checkPending() {
-		myRequestPage.clickPendingCheckBox();
-	}
-
-	@Step
-	public void applyFiltersOnMyRequests() {
-		myRequestPage.clickApplyFilterButton();
-	}
+//	@Step
+//	public void checkHolidayCheckBox() {
+//		myRequestPage.clickHolidayCheckBox();
+//	}
+//
+//	@Step
+//	public void checkVacationWithoutPayment() {
+//		myRequestPage.clickVacationWithoutPayment();
+//	}
+//
+//	@Step
+//	public void checkOneFiveFilter() {
+//		myRequestPage.checkOneFiveDaysFilter();
+//	}
+//
+//	@Step
+//	public void checkPending() {
+//		myRequestPage.clickPendingCheckBox();
+//	}
+//
+//	@Step
+//	public void applyFiltersOnMyRequests() {
+//		myRequestPage.clickApplyFilterButton();
+//	}
 
 	@Step
 	public int verifyIfTableExists() {
@@ -65,22 +66,29 @@ public class MyRequestsSteps extends ScenarioSteps {
 		// checkPending();
 		//applyFiltersOnMyRequests();
 
-		// if (verifyIfTableExists() == 1) {
-		// // verifica corectitudinea datelor
+		if (verifyIfTableExists() == 1) {
+			// verifica corectitudinea datelor
 		
-		lookForElement(terms);
-		//
-		// }
-
-		// Cancel or withdraw requests
+			lookForElement(terms);
+		}
+			// Cancel or withdraw requests
 
 	}
+
 
 	@Step
 	public void lookForElement(String... terms) {
-		myRequestPage.selectAVacationStatus(terms);
-		applyFiltersOnMyRequests();
+		//myRequestPage.selectAVacationStatus(terms);
+		//myRequestPage.clickApplyFilterButton();
 		myRequestPage.verifySearchResultsContainsItem(terms);
 	}
+
+//	@Step
+//	public void lookForElement(String terms) {
+////		myRequestPage.selectAVacationStatus(terms);
+////		applyFiltersOnMyRequests();
+//		myRequestPage.verifyIfTheFilteredTableContainsAVacationsWithOtherStatusThanFilter(terms);
+//	}
+
 
 }
