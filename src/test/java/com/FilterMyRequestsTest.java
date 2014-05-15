@@ -22,12 +22,21 @@ public class FilterMyRequestsTest {
 	@ManagedPages(defaultUrl = "http://192.168.1.68:9080/home")
 	public Pages pages;
 
-	
+	@Steps
+	MyRequestsSteps myRequestsSteps;
 	
 	@Steps
 	CalendarPage RequestVacation;
 	
+	@Steps
+	LogInSteps login;
 	
+	@Test
+	public void testFilter() {
+		
+		login.logIn("alexandruduminciuc", "alexandru87");
+		myRequestsSteps.filterMyRequests("Pending");
+	}
 	
 //	@Test
 //	public void filterMyRequests() {

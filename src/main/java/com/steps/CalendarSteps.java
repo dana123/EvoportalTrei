@@ -20,6 +20,7 @@ public class CalendarSteps {
 	public void setStartDate(int month, int day, int year)
 			throws ParseException {
 		calendar.setDate(month, day, year);
+
 	}
 
 	@Step
@@ -40,9 +41,8 @@ public class CalendarSteps {
 	 * 
 	 */
 	@StepGroup
-	public void setDateStep(int month, int day, int year, int month1,
-			int day1, int year1)
-			throws ParseException {
+	public void setDateStep(int month, int day, int year, int month1, int day1,
+			int year1) throws ParseException {
 		enterStartDate();
 		setStartDate(month, day, year);
 		enterEndDate();

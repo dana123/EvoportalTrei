@@ -23,6 +23,9 @@ public class MyRequestsPage extends PageObject {
 	@FindBy(css = "#_evovacation_WAR_EvoVacationportlet_FIFTHCheckbox")
 	private WebElement onefiveCheckBox;
 
+	@FindBy(css = "#_evovacation_WAR_EvoVacationportlet_PENDINGCheckbox")
+	private WebElement pendingCheckBox;
+
 	@FindBy(css = "#_evovacation_WAR_EvoVacationportlet_applyButton")
 	private WebElement applyFilterButton;
 
@@ -47,6 +50,12 @@ public class MyRequestsPage extends PageObject {
 
 	}
 
+	public void clickPendingCheckBox() {
+		element(pendingCheckBox).waitUntilVisible();
+		pendingCheckBox.click();
+
+	}
+
 	public void clickApplyFilterButton() {
 		element(applyFilterButton).waitUntilVisible();
 		applyFilterButton.click();
@@ -67,7 +76,69 @@ public class MyRequestsPage extends PageObject {
 		return elementIsDisplayed;
 	}
 
-//	Cauta elementul in tabel
-	
 
+	public void selectAVacationStatus(String status) {
+
+		String var = null;
+		switch (status) {
+		case "Pending":
+			var = "PENDINGCheckbox";
+			break;
+		case "Approved":
+			var = "APPROVEDCheckbox";
+			break;
+		case "Rejected":
+			var = "REJECTEDCheckbox";
+			break;
+		case "Withdrawn":
+			var = "WITHDRAWNCheckbox";
+			break;
+		case "Canceled":
+			var = "CANCELEDCheckbox";
+			break;
+
+		}
+		WebElement element = getDriver()
+				.findElement(
+						By.cssSelector(String
+								.format("#_evovacation_WAR_EvoVacationportlet_"
+										+ var)));
+
+		if (!(element.isSelected()))
+			System.out.println(element);
+		element.click();
+	}
+
+	// boolean found = false;
+	// List<WebElement> elements = getDriver()
+	// .findElements(
+	// By.cssSelector("div[class='aui-column-content  aui-column-content-last column-three-content column-center-content '] div[class='column-content'] label"));
+	// for (WebElement element : elements) {
+	// System.out.println(element.getCssValue("value") + " " + found);
+	// if ((element.getText()).toString().equalsIgnoreCase((status)))
+	// {
+	// found = true;
+	// element.click();
+	// System.out.println(" "+found);
+	// break;
+	// }
+	// }
+	// Assert.assertTrue("The checkbox was not found", found);
+
+	public void verifyIfTheFilteredTableContainsAVacationsWithOtherStatusThanFilter(
+			String status) {
+
+		boolean foundInTable = true;
+		List<WebElement> tableElements = getDriver()
+				.findElements(
+						By.cssSelector("td[class*='col-my.request.column.header.status'] a[href*='vacationId']"));
+		for (WebElement tableElement : tableElements) {
+			if (!(tableElement.getText().toString().equalsIgnoreCase(status))) {
+				foundInTable = false;
+				break;
+			}
+			Assert.assertTrue("The filter is not working", foundInTable);
+
+		}
+	}
 }
