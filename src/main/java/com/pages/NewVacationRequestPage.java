@@ -43,6 +43,8 @@ public class NewVacationRequestPage extends PageObject {
 	@FindBy(css = ".portlet-msg-error:nth-child(1)")
 	private WebElement errorMessage;
 
+	@FindBy(css = ".aui-button-input")
+	private WebElement withdraw;
 	/**
 	 * @param vacationType
 	 *            ['CO', 'CF', 'CS', 'CM']
@@ -104,6 +106,17 @@ public class NewVacationRequestPage extends PageObject {
 			System.out.println(message);
 		}
 	}
+	public void checkThatYouReceiveTheSuccesMessage(String message1) {
+		String elementText = getDriver()
+				.findElement(
+						By.cssSelector(".portlet-msg-success"))
+						.getText().trim();
+		if (!elementText.toLowerCase().contains(message1.toLowerCase())) {
+			Assert.fail(String.format("Thef container does not contain message!",
+					message1));
+			System.out.println(message1);
+		}
+	}
 
 //	public void checkErrorMessage(String error) {
 //		saveNewRequest.getCssValue(error);
@@ -112,5 +125,16 @@ public class NewVacationRequestPage extends PageObject {
 	public void saveNewRequestButton() {
 		saveNewRequest.click();
 	}
-
+	public void withdrawRequestButton() {
+		withdraw.click();
+	}
+	
+	public String getVacationId() {
+		String[] urlList = getDriver().getCurrentUrl().split("=");
+		return urlList[urlList.length-1];
+	}
+	
+	public void goToRequest(String VacationId){
+		getDriver().get("http://192.168.1.68:9080/web/lt/new-vacation?p_p_auth=nt6olSiz&p_p_id=evovacation_WAR_EvoVacationportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_evovacation_WAR_EvoVacationportlet_menuItem=my-requests&_evovacation_WAR_EvoVacationportlet_myRequestState=view-vacation&_evovacation_WAR_EvoVacationportlet_backMenuItem=my-requests&_evovacation_WAR_EvoVacationportlet_vacationId=" + VacationId);
+	}
 }
