@@ -1,6 +1,7 @@
 package com.pages;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.thucydides.core.annotations.findby.FindBy;
@@ -90,11 +91,23 @@ public class FreeDaysHistoryPage extends PageObject {
 				.getText().trim();
 		
 		int noOfPages = tools.StringUtils.getAllIntegerNumbersFromString(noOfPagesContainer).get(1);
-				
+		
+		System.out.println(noOfPages);		
 		
 		for (int i = 0; i < noOfPages; i++) {
-			List<WebElement> searchResults = getDriver().findElements(By.cssSelector(".portlet-section-body.results-row"));
+			List<WebElement> searchResults1 = getDriver().findElements(By.cssSelector(".portlet-section-body.results-row"));
+//			List<WebElement> searchResults2 = getDriver().findElements(By.cssSelector(".portlet-section-body.results-row.last"));
+			List<WebElement> searchResults3 = getDriver().findElements(By.cssSelector(".portlet-section-alternate.results-row.alt"));
 		
+			List<WebElement> searchResults = new ArrayList<WebElement>();
+			searchResults.addAll(searchResults1);
+//			searchResults.addAll(searchResults2);
+			searchResults.addAll(searchResults3);
+				
+			for (WebElement searchResult : searchResults) {
+					System.out.println(searchResult.getText());
+				}
+
 			for (WebElement searchResult : searchResults) {
 				boolean containsTerms = true;
 				System.out.println(searchResult.getText());
