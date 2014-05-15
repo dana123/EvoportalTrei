@@ -35,7 +35,7 @@ public class FilterMyRequestsTest {
 	public void testFilter() {
 		
 		login.logIn("alexandruduminciuc", "alexandru87");
-		myRequestsSteps.filterMyRequests("Pending");
+		myRequestsSteps.filterMyRequests("Holiday", "1 - 5", "Pending");
 	}
 	
 //	@Test
