@@ -21,10 +21,10 @@ public class AssignedToMePage extends PageObject {
 	@FindBy(css = ".carousel-slider a[href*='menuItem=inbox']")
 	private WebElementFacade inboxLink;
 
-	@FindBy(css = "#evovacation_WAR_EvoVacationinportlet_approveVacationRequest")
+	@FindBy(css = ".aui-button:nth-child(1).aui-button input")
 	private WebElementFacade approveButton;
 
-	@FindBy(css = "#_evovacation_WAR_EvoVacationportlet_approveVacationRequest")
+	@FindBy(css = ".aui-button:nth-child(3)")
 	private WebElementFacade rejectButton;
 
 	@FindBy(css = "td[class='align-left col-2 col-employee-name  valign-middle']")
@@ -36,6 +36,21 @@ public class AssignedToMePage extends PageObject {
 	@FindBy(css = "#_evovacation_WAR_EvoVacationportlet_multipleApproveButton")
 	private WebElementFacade multipleApproveButton;
 
+	//@FindBy(css = "._evovacation_WAR_EvoVacationportlet_multipleRejectButton:nth-child(1)")
+	@FindBy(css = ".aui-button-input#_evovacation_WAR_EvoVacationportlet_multipleRejectButton")
+	private WebElementFacade multipleRejectButton;
+	
+	 @FindBy(css=".aui-button.aui-button-submit >.aui-button-content input")               
+	 private WebElement save;
+	 
+	 @FindBy(css = "a[href='/c/portal/logout']")
+		private WebElementFacade logoutLink;
+	 
+	 public void clickLogout() {
+		 logoutLink.click();
+		}
+
+		
 	public void clickApproveButton() {
 		approveButton.click();
 	}
@@ -59,9 +74,23 @@ public class AssignedToMePage extends PageObject {
 		checkboxAllRequests.click();
 	}
 
-	public void clickAllRequests() {
+	public void clickApprovAllRequests() {
 		multipleApproveButton.click();
 	}
+	public void clickRejectAllRequests() {
+		multipleRejectButton.click();
+		}
+	 public void clickSave(){
+		   element(save).waitUntilVisible();
+		   save.click();}
+	public String getVacationId(){
+		  String url = getDriver().getCurrentUrl();
+		  String[] valueList = url.split("=");
+		  return  valueList[valueList.length-1];
+		 }
+	public void verifyIfRequestIsInTheTableList(String vacationId){
+		  getDriver().findElement(By.cssSelector("a[href*=vacation="+vacationId+"']")).click();
+		 }
 
 	public static List<Integer> getAllIntegerNumbersFromString(String text) {
 		List<Integer> listOfIntegers = new ArrayList<Integer>();
