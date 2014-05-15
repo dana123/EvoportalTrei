@@ -36,8 +36,8 @@ public class FreeDaysHistoryTest {
 		logInSteps.openPage();
 		logInSteps.logIn("horatiuencian", "920X-p0U");
 		
-		freeDaysHistorySteps.clickFreeDaysHistoryMenu();
-		freeDaysHistorySteps.selectAFilterType("Vacation days");
-		freeDaysHistorySteps.clickOnApplyFilters();
+		freeDaysHistorySteps.checkFilters();
+		
+		
 	}
 }
