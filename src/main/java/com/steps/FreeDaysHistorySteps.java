@@ -1,10 +1,8 @@
 package com.steps;
 
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.StepGroup;
 import net.thucydides.core.steps.ScenarioSteps;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import com.pages.FreeDaysHistoryPage;
 
@@ -24,39 +22,34 @@ public class FreeDaysHistorySteps extends ScenarioSteps {
 		freeDaysHistoryPage.clickOnApplyFilters();
 	}
 
-//	check if free days history table exists
+	// check if free days history table exists
 	@Step
-	public void checkHistoryTable(){
+	public void checkHistoryTable() {
 		freeDaysHistoryPage.checkIfHistoryTableExists();
 	}
-	
-	
+
+	// Select's the filters
 	@Step
-	public void selectAFilterType(String vacationType) {
-		switch (vacationType) {
-		case "Anniversary":
-			var = "BONUS_EVOZONCheckbox";
-			break;
-		case "Extra Days":
-			var = "EXTRA_DAYSCheckbox";
-			break;
-		case "Vacation days":
-			var = "COCheckbox";
-			break;
-		case "Vacation Without Payment":
-			var = "CFCheckbox";
-			break;
+	public void selectFilters(String filter) {
+		freeDaysHistoryPage.selectAFilterType(filter);
+	}
 
-		}
-		WebElement element = getDriver()
-				.findElement(
-						By.cssSelector(String
-								.format("#_evovacation_WAR_EvoVacationportlet_"
-										+ var)));
+//	check if the table contains the given element - from the filter 
+	public void checkIfFiltersAreWorking(String... terms) {
+		freeDaysHistoryPage.verifySearchResultsContainsItem(terms);
+	}
 
-		if (!(element.isSelected()))
-			System.out.println(element);
-		element.click();
+	// Check's if the filters are working correctly
+	@StepGroup
+	public void checkFilters() {
+		clickFreeDaysHistoryMenu();
+		 selectFilters("Anniversary");
+//		 selectFilters("Extra Days");
+		 clickOnApplyFilters();
+		// System.out.println("pana la partea cu tabelul");
+//		checkIfFiltersAreWorking("Vacation Without Payment");
+		// System.out.println("dupa");
+
 	}
 
 }

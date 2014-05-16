@@ -34,10 +34,10 @@ public class FreeDaysHistoryTest {
 	@Test
 	public void filterRequests() {
 		logInSteps.openPage();
-		logInSteps.logIn("horatiuencian", "920X-p0U");
+		logInSteps.logIn("horatiuencian", "Jungla123");
 		
-		freeDaysHistorySteps.clickFreeDaysHistoryMenu();
-		freeDaysHistorySteps.selectAFilterType("Vacation days");
-		freeDaysHistorySteps.clickOnApplyFilters();
+		freeDaysHistorySteps.checkFilters();
+		
+		
 	}
 }

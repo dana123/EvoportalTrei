@@ -8,6 +8,7 @@ import net.thucydides.core.steps.ScenarioSteps;
 import com.pages.MyRequestsPage;
 
 public class MyRequestsSteps extends ScenarioSteps {
+	private static final long serialVersionUID = 1L;
 
 	MyRequestsPage myRequestPage;
 
@@ -44,15 +45,15 @@ public class MyRequestsSteps extends ScenarioSteps {
 //		myRequestPage.clickApplyFilterButton();
 //	}
 
-//	@Step
-//	public int verifyIfTableExists() {
-//		if (myRequestPage.checkIfRequestsTableExists() == true)
-//			return 1;
-//		return 0;
-//	}
+	@Step
+	public int verifyIfTableExists() {
+		if (myRequestPage.checkIfRequestsTableExists() == true)
+			return 1;
+		return 0;
+	}
 
 	@StepGroup
-	public void filterMyRequests(String terms) {
+	public void filterMyRequests(String... terms) {
 		// logInSteps.openPage();
 		// logInSteps.logIn("alexandruduminciuc", "alexandru87");
 
@@ -65,15 +66,21 @@ public class MyRequestsSteps extends ScenarioSteps {
 		// checkPending();
 		//applyFiltersOnMyRequests();
 
-		// if (verifyIfTableExists() == 1) {
-		// // verifica corectitudinea datelor
+		if (verifyIfTableExists() == 1) {
+			// verifica corectitudinea datelor
 		
-//		lookForElement(terms);
-		//
-		// }
+			lookForElement(terms);
+		}
+			// Cancel or withdraw requests
 
-		// Cancel or withdraw requests
+	}
 
+
+	@Step
+	public void lookForElement(String... terms) {
+		//myRequestPage.selectAVacationStatus(terms);
+		//myRequestPage.clickApplyFilterButton();
+		myRequestPage.verifySearchResultsContainsItem(terms);
 	}
 
 //	@Step
@@ -82,5 +89,6 @@ public class MyRequestsSteps extends ScenarioSteps {
 ////		applyFiltersOnMyRequests();
 //		myRequestPage.verifyIfTheFilteredTableContainsAVacationsWithOtherStatusThanFilter(terms);
 //	}
+
 
 }
