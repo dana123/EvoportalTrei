@@ -138,7 +138,7 @@ public class AssignedToMeTest {
 	}
 
 	@Test
-	public void navigate_Employees_pages_approveRequestTest() {
+	public void navigate_Employees_pages_approveReqTest() {
 		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
 		assignedToMeSteps.accessNewVacation();
 		assignedToMeSteps.accessInbox();
