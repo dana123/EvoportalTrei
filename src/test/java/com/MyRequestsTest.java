@@ -1,5 +1,7 @@
 package com;
 
+import java.text.ParseException;
+
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
 import net.thucydides.core.annotations.Steps;
@@ -11,8 +13,11 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import com.pages.CalendarPage;
+import com.steps.CalendarSteps;
+import com.steps.ChooseNewRequestMenuStep;
 import com.steps.LogInSteps;
 import com.steps.MyRequestsSteps;
+import com.steps.NewRequestSteps;
 
 @RunWith(ThucydidesRunner.class)
 public class MyRequestsTest {
@@ -31,11 +36,32 @@ public class MyRequestsTest {
 	@Steps
 	LogInSteps login;
 	
+	@Steps
+	ChooseNewRequestMenuStep newRequestMenuSteps;
+	
+	@Steps
+	CalendarSteps calendarStep;
+	
+	@Steps
+	NewRequestSteps newRequestSteps;
+	
 	@Test
-	public void testFilter() {
+	public void testFilter() throws ParseException{
 		
 		login.logIn("alexandruduminciuc", "alexandru87");
-		myRequestsSteps.filterMyRequests("Vacation Without Payment", "1 - 5", "Pending");
+//		newRequestMenuSteps.chooseNewRequestMenu();
+//		calendarStep.setDateStep(4,4,2014, 4,4,2014);
+//		newRequestSteps.chooseVacationType("CO");
+//		newRequestSteps.saveRequest();
+//		newRequestMenuSteps.chooseNewRequestMenu();
+//		calendarStep.setDateStep(5,4,2014, 5,4,2014);
+//		newRequestSteps.chooseVacationType("CO");
+//		newRequestSteps.saveRequest();
+//		newRequestMenuSteps.chooseNewRequestMenu();
+//		calendarStep.setDateStep(16,4,2014, 23,4,2014);
+//		newRequestSteps.chooseVacationType("CO");
+//		newRequestSteps.saveRequest();
+		myRequestsSteps.filterMyRequests("Vacation Without Payment", "1 - 5", "Withdrawn", "Holiday", "51 +", "Pending");
 	}
 	
 //	@Test

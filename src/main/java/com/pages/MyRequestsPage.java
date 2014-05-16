@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MyRequestsPage extends PageObject {
 
@@ -187,6 +186,8 @@ public class MyRequestsPage extends PageObject {
 
 			for (WebElement searchResult : searchResults) {
 
+				//boolean found = false;
+
 				System.out.println("element text: " + searchResult.getText());
 
 				for (String term : terms) {
@@ -212,6 +213,7 @@ public class MyRequestsPage extends PageObject {
 						if (!(dayNo >= lowLimit && dayNo <= highLimit)) {
 							Assert.fail(String
 									.format("The list doesn't contain the correct data according to the applied filter"));
+
 						}
 					} else {
 
@@ -233,7 +235,7 @@ public class MyRequestsPage extends PageObject {
 
 					waitABit(2000);
 				}
-				// }
+
 			}
 
 			// boolean foundInTable = true;
