@@ -2,6 +2,7 @@ package com.pages;
 
 import net.thucydides.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
+import net.thucydides.core.pages.WebElementFacade;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -45,6 +46,13 @@ public class NewVacationRequestPage extends PageObject {
 
 	@FindBy(css = ".aui-button-input")
 	private WebElement withdraw;
+
+	@FindBy(css = "a[href='/c/portal/logout']")
+	private WebElementFacade logoutLink;
+
+	@FindBy(css = ".carousel-slider a[href*='menuItem=inbox']")
+	private WebElementFacade inboxLink;
+
 	/**
 	 * @param vacationType
 	 *            ['CO', 'CF', 'CS', 'CM']
@@ -81,60 +89,69 @@ public class NewVacationRequestPage extends PageObject {
 		contentComment.sendKeys(com);
 	}
 
-	// public void checkThatYouReceiveTheErrorMessage(String message) {
-	//
-	// }
 	public void checkThatYouReceiveTheErrorMessage2(String message) {
 		String elementText = getDriver()
 				.findElement(
 						By.cssSelector("#mainVacationContent >#createVacation form >.portlet-msg-error"))
 				.getText().trim();
 		if (!elementText.toLowerCase().contains(message.toLowerCase())) {
-			Assert.fail(String.format("Thef containerf does not contain message!",
-					message));
+			Assert.fail(String.format(
+					"Thef containerf does not contain message!", message));
 			System.out.println(message);
 		}
 	}
+
 	public void checkThatYouReceiveTheErrorMessage(String message) {
 		String elementText = getDriver()
 				.findElement(
 						By.cssSelector(".portlet-body >.portlet-msg-error"))
-						.getText().trim();
+				.getText().trim();
 		if (!elementText.toLowerCase().contains(message.toLowerCase())) {
-			Assert.fail(String.format("Thef containerf does not contain message!",
-					message));
+			Assert.fail(String.format(
+					"Thef containerf does not contain message!", message));
 			System.out.println(message);
 		}
 	}
+
 	public void checkThatYouReceiveTheSuccesMessage(String message1) {
 		String elementText = getDriver()
-				.findElement(
-						By.cssSelector(".portlet-msg-success"))
-						.getText().trim();
+				.findElement(By.cssSelector(".portlet-msg-success")).getText()
+				.trim();
 		if (!elementText.toLowerCase().contains(message1.toLowerCase())) {
-			Assert.fail(String.format("Thef container does not contain message!",
-					message1));
+			Assert.fail(String.format(
+					"Thef container does not contain message!", message1));
 			System.out.println(message1);
 		}
 	}
 
-//	public void checkErrorMessage(String error) {
-//		saveNewRequest.getCssValue(error);
-//	}
+	 public void checkErrorMessage(String error) {
+	 saveNewRequest.getCssValue(error);
+	 }
 
 	public void saveNewRequestButton() {
 		saveNewRequest.click();
 	}
+
 	public void withdrawRequestButton() {
 		withdraw.click();
 	}
-	
+
 	public String getVacationId() {
 		String[] urlList = getDriver().getCurrentUrl().split("=");
-		return urlList[urlList.length-1];
+		return urlList[urlList.length - 1];
 	}
-	
-	public void goToRequest(String VacationId){
-		getDriver().get("http://192.168.1.68:9080/web/lt/new-vacation?p_p_auth=nt6olSiz&p_p_id=evovacation_WAR_EvoVacationportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_evovacation_WAR_EvoVacationportlet_menuItem=my-requests&_evovacation_WAR_EvoVacationportlet_myRequestState=view-vacation&_evovacation_WAR_EvoVacationportlet_backMenuItem=my-requests&_evovacation_WAR_EvoVacationportlet_vacationId=" + VacationId);
+
+	public void goToRequest(String VacationId) {
+		getDriver()
+				.get("http://192.168.1.68:9080/web/lt/new-vacation?p_p_auth=nt6olSiz&p_p_id=evovacation_WAR_EvoVacationportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_evovacation_WAR_EvoVacationportlet_menuItem=my-requests&_evovacation_WAR_EvoVacationportlet_myRequestState=view-vacation&_evovacation_WAR_EvoVacationportlet_backMenuItem=my-requests&_evovacation_WAR_EvoVacationportlet_vacationId="
+						+ VacationId);
+	}
+
+	public void clickLogout() {
+		logoutLink.click();
+	}
+
+	public void clickInbox() {
+		inboxLink.click();
 	}
 }

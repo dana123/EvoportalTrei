@@ -18,7 +18,11 @@ public class AssignedToMeSteps extends ScenarioSteps {
 	public void accessNewVacation() {
 		assignedToMePage.clickNewVacation();
 	}
-
+	@Step
+	public void logout() {
+		assignedToMePage.clickLogout();
+	}
+	
 	@Step
 	public void accessInbox() {
 		assignedToMePage.clickInbox();
@@ -33,6 +37,14 @@ public class AssignedToMeSteps extends ScenarioSteps {
 	public void rejectRequest() {
 		assignedToMePage.clickRejectButton();
 	}
+	@Step
+	public void rejectRequest2(String vacationId) {
+		assignedToMePage.clickRejectButton();
+	}
+	@Step
+	public void approveRequest() {
+		assignedToMePage.clickApproveButton();
+	}
 
 	@Step
 	public void sellectAllRequests() {
@@ -41,12 +53,23 @@ public class AssignedToMeSteps extends ScenarioSteps {
 
 	@Step
 	public void approveAllRequests() {
-		assignedToMePage.clickAllRequests();
+		assignedToMePage.clickApprovAllRequests();
 	}
-
+	@Step
+	public void rejectAllRequests() {
+		assignedToMePage.clickRejectAllRequests();
+	}
 	@Step
 	public void openRequest(String requestID) {
 		assignedToMePage.openRequest(requestID);
 	}
-
+	@Step
+       public String verifyIfRequestIsInTheTableList() throws Exception {
+		assignedToMePage.clickSave();
+	  return assignedToMePage.getVacationId();
+	 }
+	@Step
+	public void clickRequest(String employeeName) {
+		assignedToMePage.clickOnAnEmployeeLink(employeeName);
+	}
 }

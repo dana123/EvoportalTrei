@@ -17,13 +17,12 @@ import com.requirements.Application;
 import com.steps.CalendarSteps;
 import com.steps.ChooseNewRequestMenuStep;
 import com.steps.LogInSteps;
-import com.steps.NewRequestCommentSteps;
+import com.steps.MyRequestsSteps;
 import com.steps.NewRequestSteps;
 
 @Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
-public class NewRequestCommentTest {
-
+public class NewRequestAcceptByPMTest {
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
 
@@ -41,15 +40,28 @@ public class NewRequestCommentTest {
 	
 	@Steps
 	CalendarSteps calendarStep;
-
+	
 	@Steps
-	NewRequestCommentSteps newRequestCommentSteps;
+	MyRequestsSteps myRequestsSteps;
 
 	@Test
-	public void newRequest() throws ParseException {
+	public void newRequestPart1() throws ParseException {
 		logInSteps.logIn("horatiuencian", "920X-p0U");
+		
 		newRequestMenuSteps.chooseNewRequestMenu();
-		calendarStep.setDateStep(4, 9, 2014, 4,9,2014);
-		newRequestCommentSteps.newRequestComStep("CF", "taneaataneataneatnneataneataneataneataneataneata");
+		calendarStep.setDateStep(4,4,2014, 4,4,2014);
+		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.", false);
+		String vacationId = newRequestSteps.getVacationId();
+
+//		newRequestMenuSteps.chooseNewRequestMenu();
+//		calendarStep.setDateStep(4,4,2014, 4,4,2014);
+//		newRequestSteps.newRequestStep( "CS", "Your request failed to complete.", true);
+		
+		//myRequestsSteps.clickMyRequestsPage();
+		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
+		newRequestSteps.inboxMenu();
+		newRequestSteps.goToRequest(vacationId);
+//		newRequestSteps.withdrawRequest();
 	}
+
 }

@@ -42,13 +42,25 @@ public class NewRequestSteps {
 	public String getVacationId() {
 		return newVacation.getVacationId();
 	}
-	
+
 	@Step
-	public void goToRequest(String vacationId){
+	public void goToRequest(String vacationId) {
 		newVacation.goToRequest(vacationId);
 	}
 
+	@Step
+	public void logOut() {
+		newVacation.clickLogout();
+	}
+
+	@Step
+	public void inboxMenu() {
+		newVacation.clickInbox();
+	}
+
 	/**
+	 * public void
+	 * 
 	 * @param vacationType
 	 *            Vacation - 'CO', 'CF', 'CS', 'CM']
 	 * @throws ParseException
@@ -59,11 +71,12 @@ public class NewRequestSteps {
 			boolean error) throws ParseException {
 		chooseVacationType(vacationType);
 		saveRequest();
-		if (error) {
-			checkErrorMessage(message);
-		} else {
-			checkMessage(message);
-		}
+//		if (error) {
+//			checkErrorMessage(message);
+//		} else {
+//			checkMessage(message);
+//		}
 		// withdrawRequest();
+		logOut();
 	}
 }
