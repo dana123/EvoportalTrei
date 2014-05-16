@@ -15,7 +15,7 @@ import com.steps.LogInSteps;
 import com.steps.MyRequestsSteps;
 
 @RunWith(ThucydidesRunner.class)
-public class FilterMyRequestsTest {
+public class MyRequestsTest {
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
 	
@@ -35,7 +35,7 @@ public class FilterMyRequestsTest {
 	public void testFilter() {
 		
 		login.logIn("alexandruduminciuc", "alexandru87");
-		myRequestsSteps.filterMyRequests("Holiday", "1 - 5", "Pending");
+		myRequestsSteps.filterMyRequests("Vacation Without Payment", "1 - 5", "Pending");
 	}
 	
 //	@Test

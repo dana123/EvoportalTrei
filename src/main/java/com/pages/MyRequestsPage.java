@@ -1,5 +1,6 @@
 package com.pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.thucydides.core.pages.PageObject;
@@ -32,7 +33,7 @@ public class MyRequestsPage extends PageObject {
 
 	@FindBy(css = ".taglib-search-iterator")
 	private WebElement requestsTable;
-	
+
 	@FindBy(css = "table.taglib-search-iterator tr.results-row")
 	private WebElement row;
 
@@ -155,7 +156,7 @@ public class MyRequestsPage extends PageObject {
 	// break;
 	// }
 	// }
-	// Assert.assertTrue("The checkbox was not found", found);
+	// Assert.assertTrue("The check box was not found", found);
 
 	public void verifySearchResultsContainsItem(String... terms) {
 		String noOfPagesContainer = getDriver()
@@ -167,59 +168,72 @@ public class MyRequestsPage extends PageObject {
 				noOfPagesContainer).get(1);
 		System.out.println(noOfPages);
 		for (int i = 0; i < noOfPages; i++) {
-			List<WebElement> searchResults = getDriver().findElements(By.cssSelector("table.taglib-search-iterator"));
+			// List<WebElement> searchResults =
+			// getDriver().findElements(By.cssSelector("table.taglib-search-iterator"));
+
+			List<WebElement> searchResults1 = getDriver().findElements(
+					By.cssSelector(".portlet-section-body.results-row"));
+			List<WebElement> searchResults3 = getDriver()
+					.findElements(
+							By.cssSelector(".portlet-section-alternate.results-row.alt"));
+
+			List<WebElement> searchResults = new ArrayList<WebElement>();
+
+			searchResults.addAll(searchResults1);
+			searchResults.addAll(searchResults3);
+			searchResults.remove(0);
+
 			System.out.println("size: " + searchResults.size());
 
 			for (WebElement searchResult : searchResults) {
+
 				System.out.println("element text: " + searchResult.getText());
 
-				if ($(searchResult).isCurrentlyVisible()) {
-					for (String term : terms) {
+				for (String term : terms) {
+					System.out.println(term);
 
-						if (term.contains("-")) {
-							String daysRange = term;
-							System.out.println(daysRange);
-							daysRange.trim();
-							System.out.println(" " + daysRange);
-							int lowLimit = tools.StringUtils
-									.getAllIntegerNumbersFromString(daysRange)
-									.get(0);
-							int highLimit = tools.StringUtils
-									.getAllIntegerNumbersFromString(daysRange)
-									.get(1);
-							String days = searchResult.findElement(
-									By.cssSelector("td:nth-child(3)"))
-									.getText();
-							int dayNo = Integer.parseInt(days);
-							System.out.println(dayNo);
-							if (!(dayNo >= lowLimit && dayNo <= highLimit)) {
-							} else {
+					if (term.contains("-")) {
+						String daysRange = term;
+						System.out.println(daysRange);
+						daysRange.trim();
 
-								if (!searchResult.getText().toLowerCase()
+						int lowLimit = tools.StringUtils
+								.getAllIntegerNumbersFromString(daysRange).get(
+										0);
+						System.out.println("lowLimit = " + lowLimit);
+						int highLimit = tools.StringUtils
+								.getAllIntegerNumbersFromString(daysRange).get(
+										1);
+						System.out.println("highLimit = " + highLimit);
+						String days = searchResult.findElement(
+								By.cssSelector("td:nth-child(3)")).getText();
+						int dayNo = Integer.parseInt(days);
+						System.out.println(dayNo);
+						if (!(dayNo >= lowLimit && dayNo <= highLimit)) {
+							Assert.fail(String
+									.format("The list doesn't contain the correct data according to the applied filter"));
+						}
+					} else {
 
-								.contains(term.toLowerCase())) {
-									Assert.fail(String
-											.format("The '%s' search result item does not contain '%s'!",
-													searchResult.getText(),
-													term));
-								}
-							}
+						if (!searchResult.getText().toLowerCase()
+
+						.contains(term.toLowerCase())) {
+							Assert.fail(String
+									.format("The '%s' search result item does not contain '%s'!",
+											searchResult.getText(), term));
 						}
 					}
 				}
+
 				if (i < noOfPages - 1) {
 					getDriver()
 							.findElement(
 									By.cssSelector("div.page-links > a.aui-paginator-link.aui-paginator-next-link"))
 							.click();
-					waitFor(ExpectedConditions
-							.textToBePresentInElement(
-									By.cssSelector("div.page-links > span.aui-paginator-current-page-report.aui-paginator-total"),
-									String.format("(%d of %d)", i + 2,
-											noOfPages)));
+
 					waitABit(2000);
 				}
-
+				// }
 			}
 
 			// boolean foundInTable = true;
