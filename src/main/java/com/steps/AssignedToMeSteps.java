@@ -18,11 +18,11 @@ public class AssignedToMeSteps extends ScenarioSteps {
 	public void accessNewVacation() {
 		assignedToMePage.clickNewVacation();
 	}
-	@Step
-	public void logout() {
-		assignedToMePage.clickLogout();
-	}
-	
+//	@Step
+//	public void logout() {
+//		assignedToMePage.clickLogout();
+//	}
+//	
 	@Step
 	public void accessInbox() {
 		assignedToMePage.clickInbox();
@@ -68,5 +68,9 @@ public class AssignedToMeSteps extends ScenarioSteps {
 		assignedToMePage.clickSave();
 	  return assignedToMePage.getVacationId();
 	 }
-
+	
+	@Step
+	 public void clickGoThrowPages(){
+		assignedToMePage.goThrowPages();
+	 }
 }

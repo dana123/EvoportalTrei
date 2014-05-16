@@ -2,6 +2,7 @@ package com.pages;
 
 import net.thucydides.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.PageObject;
+import net.thucydides.core.pages.WebElementFacade;
 
 import org.openqa.selenium.WebElement;
 
@@ -22,9 +23,13 @@ public class LogInPage extends PageObject {
 	@FindBy(css = "a[href*='new-vacation']")
 	private WebElement newVacationMenu;
 
+	 @FindBy(css = "a[href='/c/portal/logout']")
+		private WebElementFacade logoutLink;
 	
 	
-	
+	 public void clickLogout() {
+		 logoutLink.click();
+		}
 	
 	// click on sign in
 	public void clickSignIn() {

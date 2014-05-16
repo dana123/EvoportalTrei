@@ -54,7 +54,7 @@ public class NewRequestTest {
 		
 		
 		String vacationId = newRequestSteps.getVacationId();
-
+		System.out.print(vacationId);
 		newRequestMenuSteps.chooseNewRequestMenu();
 		calendarStep.setDateStep(4,4,2014, 4,4,2014);
 //		newRequestSteps.newRequestStep( "CS", "Your request failed to complete.", true);
