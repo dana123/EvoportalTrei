@@ -47,6 +47,12 @@ public class FreeDaysHistoryPage extends PageObject {
 		case "Vacation Without Payment":
 			var = "CFCheckbox";
 			break;
+		case "11 - 20":
+			var = "TWENTIETHCheckbox";
+			break;
+		case "Added Days":
+			var = "ADDED_DAYSCheckbox";
+			break;
 
 		}
 		WebElement element = getDriver()
@@ -64,6 +70,7 @@ public class FreeDaysHistoryPage extends PageObject {
 	// apply the filters
 		public void clickOnApplyFilters() {
 			applyFilters.click();
+			waitABit(1000);
 		}
 	
 	
@@ -116,12 +123,13 @@ public class FreeDaysHistoryPage extends PageObject {
 				for (String term : terms) {
 						if (searchResult.getText().toLowerCase()
 								.contains(term.toLowerCase())) {
-							
+						
 						containsTerms = false;
 						System.out.println(term + " element found");
+						System.out.println("THE ELEMENT WAS FOUND!!!!!!!!!!!!!!!!!");
 						
 						}
-//				}  s-ar putea sa fie bine asa
+//				}  It might not be well here must see again
 					 if(containsTerms){
 						found = true;
 						System.out.println(term +  " element not found");

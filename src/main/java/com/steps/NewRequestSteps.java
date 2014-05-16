@@ -21,6 +21,7 @@ public class NewRequestSteps {
 	@Step
 	public void saveRequest() {
 		newVacation.saveNewRequestButton();
+		
 	}
 
 	@Step
@@ -59,11 +60,11 @@ public class NewRequestSteps {
 			boolean error) throws ParseException {
 		chooseVacationType(vacationType);
 		saveRequest();
-		if (error) {
-			checkErrorMessage(message);
-		} else {
-			checkMessage(message);
-		}
+//		if (error) {
+//			checkErrorMessage(message);
+//		} else {
+//			checkMessage(message);
+//		}
 		// withdrawRequest();
 	}
 }
