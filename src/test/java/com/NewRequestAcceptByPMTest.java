@@ -46,13 +46,14 @@ public class NewRequestAcceptByPMTest {
 
 	@Test
 	public void newRequestPart1() throws ParseException {
-		logInSteps.logIn("horatiuencian", "920X-p0U");
+		logInSteps.logIn("horatiuencian", "Jungla123");
 		
-		newRequestMenuSteps.chooseNewRequestMenu();
-		calendarStep.setDateStep(4,4,2014, 4,4,2014);
-		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.", false);
-		String vacationId = newRequestSteps.getVacationId();
-
+//		newRequestMenuSteps.chooseNewRequestMenu();
+//		calendarStep.setDateStep(5,4,2014, 5,4,2014);
+//		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.", false);
+//		String vacationId = newRequestSteps.getVacationId();
+//System.out.println(vacationId);
+newRequestSteps.logOut();
 //		newRequestMenuSteps.chooseNewRequestMenu();
 //		calendarStep.setDateStep(4,4,2014, 4,4,2014);
 //		newRequestSteps.newRequestStep( "CS", "Your request failed to complete.", true);
@@ -60,7 +61,13 @@ public class NewRequestAcceptByPMTest {
 		//myRequestsSteps.clickMyRequestsPage();
 		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
 		newRequestSteps.inboxMenu();
-		newRequestSteps.goToRequest(vacationId);
+//		newRequestSteps.goToRequest("2598");
+//		System.out.println("2598");
+		try {
+		    Thread.sleep(1000);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 //		newRequestSteps.withdrawRequest();
 	}
 

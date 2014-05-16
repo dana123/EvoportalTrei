@@ -14,7 +14,7 @@ public class NewRequestSteps {
 	CalendarPage calendar;
 
 	@Step
-	public void chooseVacationType(String vacationType) {
+	public void chooseAVacationType(String vacationType) {
 		newVacation.selectVacationType(vacationType);
 	}
 
@@ -57,26 +57,33 @@ public class NewRequestSteps {
 	public void inboxMenu() {
 		newVacation.clickInbox();
 	}
+	
+	@Step
+	 public void click_dropDown(String value) throws Exception {
+	  newVacation.click_a_special_vacation(value);
+	  Thread.sleep(4000);
+	 }
 
 	/**
 	 * public void
 	 * 
 	 * @param vacationType
 	 *            Vacation - 'CO', 'CF', 'CS', 'CM']
-	 * @throws ParseException
+	 * @throws Exception 
 	 * 
 	 */
 	@StepGroup
-	public void newRequestStep(String vacationType, String message,
-			boolean error) throws ParseException {
-		chooseVacationType(vacationType);
+	public void newRequestStep(String vacationType, String value, String message,
+			boolean error) throws Exception {
+		chooseAVacationType(vacationType);
+		click_dropDown(value);
 		saveRequest();
-//		if (error) {
-//			checkErrorMessage(message);
-//		} else {
-//			checkMessage(message);
-//		}
-		// withdrawRequest();
-		logOut();
+		if (error) {
+			checkErrorMessage(message);
+		} else {
+			checkMessage(message);
+		}
+//		 withdrawRequest();
+//		logOut();
 	}
 }

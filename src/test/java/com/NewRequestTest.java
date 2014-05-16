@@ -45,22 +45,22 @@ public class NewRequestTest {
 	MyRequestsSteps myRequestsSteps;
 
 	@Test
-	public void newRequestPart1() throws ParseException {
+	public void newRequestPart1() throws Exception {
 		logInSteps.logIn("horatiuencian", "Jungla123");
 		
 		newRequestMenuSteps.chooseNewRequestMenu();
-		calendarStep.setDateStep(4,4,2014, 4,4,2014);
-		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.", false);
+		calendarStep.setDateStep(5,7,2014, 5,8,2014);
+		newRequestSteps.newRequestStep( "CS","Funeral", "Your request completed successfully.", false);
 		String vacationId = newRequestSteps.getVacationId();
 		System.out.print(vacationId);
 		newRequestMenuSteps.chooseNewRequestMenu();
 		calendarStep.setDateStep(4,4,2014, 4,4,2014);
-		newRequestSteps.newRequestStep( "CS", "Your request failed to complete.", true);
+		newRequestSteps.newRequestStep( "CS","Child birth", "Your request failed to complete.", true);
 		
-		//myRequestsSteps.clickMyRequestsPage();
+		myRequestsSteps.clickMyRequestsPage();
 		
 		newRequestSteps.goToRequest(vacationId);
-		newRequestSteps.withdrawRequest();
+//		newRequestSteps.withdrawRequest();
 	}
 
 }

@@ -52,6 +52,9 @@ public class NewVacationRequestPage extends PageObject {
 
 	@FindBy(css = ".carousel-slider a[href*='menuItem=inbox']")
 	private WebElementFacade inboxLink;
+	
+	@FindBy(css = "select[name='specialReason']")
+	 private WebElementFacade ChooseASpecialVacation;
 
 	/**
 	 * @param vacationType
@@ -154,4 +157,57 @@ public class NewVacationRequestPage extends PageObject {
 	public void clickInbox() {
 		inboxLink.click();
 	}
+	public void click_a_special_vacation(String value) {
+		  ChooseASpecialVacation.selectByVisibleText(value);
+		 }
+	public void selectAVacationType(String vacationType, String keywordDomain,
+			   String KeywordInstitution, String value,String com) {
+			  String var;
+			  switch (vacationType) {
+			  case "Holiday": {
+			   var = "CO";
+			   WebElement element = getDriver().findElement(
+			     By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
+			       + var));
+			   element.click();
+			   clickAddComment();
+			   tapeComment(com);
+			   break;
+			  }
+			  case "Vacation without payment": {
+			   var = "CF";
+			   WebElement element = getDriver().findElement(
+			     By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
+			       + var));
+			   element.click();
+			 
+			   clickAddComment();
+			   tapeComment(com);
+			   break;
+			  }
+			  case "Special vacation": {
+			   var = "CS";
+			   WebElement element = getDriver().findElement(
+			     By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
+			       + var));
+			   element.click();
+			   click_a_special_vacation(value);
+			   clickAddComment();
+			   tapeComment(com);
+			   break;
+			  }
+			  case "Sick leave":
+			   var = "CM";
+			   WebElement element = getDriver().findElement(
+			     By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
+			       + var));
+			   element.click();
+			   clickAddComment();
+			   tapeComment(com);
+			   break;
+			  }
+			 }
+//	public void getStartDate(){
+//		
+//	}
 }
