@@ -38,7 +38,7 @@ public class NewRequestCommentSteps {
 	}
 
 	@StepGroup
-	public void newRequestStep(String vacationType, String com) {
+	public void newRequestComStep(String vacationType, String com) {
 //		chooseNewRequestMenu();
 		chooseVacationType(vacationType);
 		addComment();

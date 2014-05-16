@@ -1,13 +1,10 @@
 package com.steps;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import com.pages.FreeDaysHistoryPage;
-
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.StepGroup;
 import net.thucydides.core.steps.ScenarioSteps;
+
+import com.pages.FreeDaysHistoryPage;
 
 @SuppressWarnings("serial")
 public class FreeDaysHistorySteps extends ScenarioSteps {

@@ -1,7 +1,5 @@
 package com;
 
-import java.text.ParseException;
-
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
 import net.thucydides.core.annotations.Steps;
@@ -17,7 +15,7 @@ import com.steps.CalendarSteps;
 import com.steps.ChooseNewRequestMenuStep;
 import com.steps.LogInSteps;
 import com.steps.MyRequestsSteps;
-import com.steps.NewRequestSteps;
+import com.steps.NewRequestCommentSteps;
 
 @RunWith(ThucydidesRunner.class)
 public class AssignedToMeTest {
@@ -37,7 +35,7 @@ public class AssignedToMeTest {
 	@Steps
 	MyRequestsSteps myRequestsSteps;
 	@Steps
-	NewRequestSteps newRequestSteps;
+	NewRequestCommentSteps newRequestSteps;
 	@Steps
 	ChooseNewRequestMenuStep newRequestMenuSteps;
 	@Steps
@@ -105,8 +103,6 @@ public class AssignedToMeTest {
 		logInSteps.logIn("horatiuencian", "920X-p0U");
 		newRequestMenuSteps.chooseNewRequestMenu();
 		calendarStep.setDateStep(12, 21, 2014, 12, 28, 2014);
-		newRequestSteps.newRequestStep("CO",
-				"Your request failed to complete.", false);
 
 		// String vacationID = pmUserSteps.clickSave();
 		// System.out.println(vacationID);
