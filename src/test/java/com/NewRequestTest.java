@@ -46,13 +46,13 @@ public class NewRequestTest {
 
 	@Test
 	public void newRequestPart1() throws ParseException {
-		logInSteps.logIn("horatiuencian", "920X-p0U");
+		logInSteps.logIn("horatiuencian", "Jungla123");
 		
 		newRequestMenuSteps.chooseNewRequestMenu();
 		calendarStep.setDateStep(4,4,2014, 4,4,2014);
 		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.", false);
 		String vacationId = newRequestSteps.getVacationId();
-
+		System.out.print(vacationId);
 		newRequestMenuSteps.chooseNewRequestMenu();
 		calendarStep.setDateStep(4,4,2014, 4,4,2014);
 		newRequestSteps.newRequestStep( "CS", "Your request failed to complete.", true);

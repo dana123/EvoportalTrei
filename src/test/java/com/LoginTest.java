@@ -26,9 +26,11 @@ public class LoginTest {
 
 	@Steps
 	LogInSteps logInSteps;
-	
+
 	@Test
 	public void loginTest() {
 		logInSteps.logIn("horatiuencian", "920X-p0U");
+		logInSteps.logout();
 	}
+
 }

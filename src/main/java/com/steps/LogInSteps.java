@@ -15,6 +15,10 @@ public class LogInSteps extends ScenarioSteps {
 		logInPage.clickSignIn();
 
 	}
+	@Step
+	public void logout() {
+		logInPage.clickLogout();
+	}
 
 	@Step
 	public void openPage() {

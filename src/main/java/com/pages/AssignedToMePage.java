@@ -24,7 +24,7 @@ public class AssignedToMePage extends PageObject {
 	@FindBy(css = ".aui-button:nth-child(1).aui-button input")
 	private WebElementFacade approveButton;
 
-	@FindBy(css = ".aui-button:nth-child(3)")
+	@FindBy(css = ".aui-button:nth-child(3).aui-button input")
 	private WebElementFacade rejectButton;
 
 	@FindBy(css = "td[class='align-left col-2 col-employee-name  valign-middle']")
@@ -43,12 +43,12 @@ public class AssignedToMePage extends PageObject {
 	 @FindBy(css=".aui-button.aui-button-submit >.aui-button-content input")               
 	 private WebElement save;
 	 
-	 @FindBy(css = "a[href='/c/portal/logout']")
-		private WebElementFacade logoutLink;
+//	 @FindBy(css = "a[href='/c/portal/logout']")
+//		private WebElementFacade logoutLink;
 	 
-	 public void clickLogout() {
-		 logoutLink.click();
-		}
+//	 public void clickLogout() {
+//		 logoutLink.click();
+//		}
 
 		
 	public void clickApproveButton() {
@@ -63,9 +63,6 @@ public class AssignedToMePage extends PageObject {
 		inboxLink.click();
 	}
 
-	// public void clickRequest() {
-	// requestLink.click();
-	// }
 	public void clickNewVacation() {
 		newVacationLink.click();
 	}
@@ -91,6 +88,27 @@ public class AssignedToMePage extends PageObject {
 	public void verifyIfRequestIsInTheTableList(String vacationId){
 		  getDriver().findElement(By.cssSelector("a[href*=vacation="+vacationId+"']")).click();
 		 }
+
+	public void goThrowPages() {
+		  String noOfPagesContainer = getDriver()
+		    .findElement(
+		      By.cssSelector("div.page-links > span.aui-paginator-current-page-report.aui-paginator-total"))
+		    .getText().trim();
+		  
+		  waitABit(3000);
+
+		  int noOfPages = tools.StringUtils.getAllIntegerNumbersFromString(
+		    noOfPagesContainer).get(1);
+		  for (int i = 0; i < noOfPages; i++) {
+		   if (i < noOfPages - 1 ) {
+		    getDriver()
+		      .findElement(
+		        By.cssSelector("div.page-links > a.aui-paginator-link.aui-paginator-next-link"))
+		      .click();
+		   
+		  waitABit(3000);
+		   }}}
+	
 
 	public static List<Integer> getAllIntegerNumbersFromString(String text) {
 		List<Integer> listOfIntegers = new ArrayList<Integer>();
