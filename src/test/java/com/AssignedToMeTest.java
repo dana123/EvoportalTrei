@@ -53,7 +53,7 @@ public class AssignedToMeTest {
 		Thread.sleep(3000);
 	}
 
-	// @Test
+	//@Test
 	public void reject_requestsTest() throws InterruptedException {
 		logInSteps.openPage();
 		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
@@ -75,7 +75,7 @@ public class AssignedToMeTest {
 		assignedToMeSteps.approveAllRequests();
 	}
 
-	// @Test
+	//@Test
 	public void reject_all_requestsTest() {
 		logInSteps.openPage();
 		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
@@ -100,7 +100,7 @@ public class AssignedToMeTest {
 
 	// @Test
 	public void create_request_then_rejectTest() throws Exception {
-		logInSteps.logIn("horatiuencian", "920X-p0U");
+		logInSteps.logIn("deliatripon", "89H5H0g6");
 		newRequestMenuSteps.chooseNewRequestMenu();
 		calendarStep.setDateStep(12, 21, 2014, 12, 28, 2014);
 
@@ -124,7 +124,7 @@ public class AssignedToMeTest {
 		logInSteps.logout();
 	}
 
-	// @Test
+	@Test
 	public void navigate_inboxTest() {
 		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
 		assignedToMeSteps.accessNewVacation();
@@ -133,7 +133,7 @@ public class AssignedToMeTest {
 
 	}
 
-	@Test
+	//@Test
 	public void navigate_Employees_pages_approveReqTest() {
 		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
 		assignedToMeSteps.accessNewVacation();
