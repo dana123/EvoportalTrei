@@ -170,61 +170,68 @@ public class MyRequestsPage extends PageObject {
 			System.out.println(searchResults.size());
 			for (WebElement searchResult : searchResults) {
 				System.out.println(searchResult.getText());
-				
+
 				if ($(searchResult).isCurrentlyVisible()) {
 					for (String term : terms) {
-						
-						if (term.contains("-")){
+
+						if (term.contains("-")) {
 							String daysRange = term;
 							System.out.println(daysRange);
 							daysRange.trim();
 							System.out.println(" " + daysRange);
-							int lowLimit = tools.StringUtils.getAllIntegerNumbersFromString(
-									daysRange).get(0);
-							int highLimit = tools.StringUtils.getAllIntegerNumbersFromString(
-									daysRange).get(1);
-							int number = tools.StringUtils.getAllIntegerNumbersFromString(searchResult.toString()).get(16);
+							int lowLimit = tools.StringUtils
+									.getAllIntegerNumbersFromString(daysRange)
+									.get(0);
+							int highLimit = tools.StringUtils
+									.getAllIntegerNumbersFromString(daysRange)
+									.get(1);
+							int number = tools.StringUtils
+									.getAllIntegerNumbersFromString(
+											searchResult.toString()).get(16);
 							System.out.println(number);
-							if (!(number>=lowLimit && number<=highLimit)){
-						}else{
-							
-							if (!searchResult.getText().toLowerCase()
-						
+							if (!(number >= lowLimit && number <= highLimit)) {
+							} else {
+
+								if (!searchResult.getText().toLowerCase()
+
 								.contains(term.toLowerCase())) {
-							Assert.fail(String
-									.format("The '%s' search result item does not contain '%s'!",
-											searchResult.getText(), term));
+									Assert.fail(String
+											.format("The '%s' search result item does not contain '%s'!",
+													searchResult.getText(),
+													term));
+								}
 							}
 						}
 					}
 				}
-			}
-			if (i < noOfPages - 1) {
-				getDriver()
-						.findElement(
-								By.cssSelector("div.page-links > a.aui-paginator-link.aui-paginator-next-link"))
-						.click();
-				waitFor(ExpectedConditions
-						.textToBePresentInElement(
-								By.cssSelector("div.page-links > span.aui-paginator-current-page-report.aui-paginator-total"),
-								String.format("(%d of %d)", i + 2, noOfPages)));
-				waitABit(2000);
-			}
-		
-	}
+				if (i < noOfPages - 1) {
+					getDriver()
+							.findElement(
+									By.cssSelector("div.page-links > a.aui-paginator-link.aui-paginator-next-link"))
+							.click();
+					waitFor(ExpectedConditions
+							.textToBePresentInElement(
+									By.cssSelector("div.page-links > span.aui-paginator-current-page-report.aui-paginator-total"),
+									String.format("(%d of %d)", i + 2,
+											noOfPages)));
+					waitABit(2000);
+				}
 
-	// boolean foundInTable = true;
-	// List<WebElement> tableElements = getDriver()
-	// .findElements(
-	// By.cssSelector("td[class*='col-my.request.column.header.status'] a[href*='vacationId']"));
-	// for (WebElement tableElement : tableElements) {
-	// if (!(tableElement.getText().toString().equalsIgnoreCase(status))) {
-	// foundInTable = false;
-	// break;
-	// }
-	// Assert.assertTrue("The filter is not working", foundInTable);
+			}
 
-	// }
-}
+			// boolean foundInTable = true;
+			// List<WebElement> tableElements = getDriver()
+			// .findElements(
+			// By.cssSelector("td[class*='col-my.request.column.header.status'] a[href*='vacationId']"));
+			// for (WebElement tableElement : tableElements) {
+			// if
+			// (!(tableElement.getText().toString().equalsIgnoreCase(status))) {
+			// foundInTable = false;
+			// break;
+			// }
+			// Assert.assertTrue("The filter is not working", foundInTable);
+
+			// }
+		}
 	}
 }
