@@ -32,6 +32,9 @@ public class MyRequestsPage extends PageObject {
 
 	@FindBy(css = ".taglib-search-iterator")
 	private WebElement requestsTable;
+	
+	@FindBy(css = "table.taglib-search-iterator tr.results-row")
+	private WebElement row;
 
 	public void clickMyRequestsPage() {
 		element(myRequestsLink).waitUntilVisible();
@@ -164,12 +167,11 @@ public class MyRequestsPage extends PageObject {
 				noOfPagesContainer).get(1);
 		System.out.println(noOfPages);
 		for (int i = 0; i < noOfPages; i++) {
-			List<WebElement> searchResults = getDriver()
-					.findElements(
-							By.cssSelector("table.taglib-search-iterator tr.results-row"));
-			System.out.println(searchResults.size());
+			List<WebElement> searchResults = getDriver().findElements(By.cssSelector("table.taglib-search-iterator"));
+			System.out.println("size: " + searchResults.size());
+
 			for (WebElement searchResult : searchResults) {
-				System.out.println(searchResult.getText());
+				System.out.println("element text: " + searchResult.getText());
 
 				if ($(searchResult).isCurrentlyVisible()) {
 					for (String term : terms) {
@@ -185,11 +187,12 @@ public class MyRequestsPage extends PageObject {
 							int highLimit = tools.StringUtils
 									.getAllIntegerNumbersFromString(daysRange)
 									.get(1);
-							int number = tools.StringUtils
-									.getAllIntegerNumbersFromString(
-											searchResult.toString()).get(16);
-							System.out.println(number);
-							if (!(number >= lowLimit && number <= highLimit)) {
+							String days = searchResult.findElement(
+									By.cssSelector("td:nth-child(3)"))
+									.getText();
+							int dayNo = Integer.parseInt(days);
+							System.out.println(dayNo);
+							if (!(dayNo >= lowLimit && dayNo <= highLimit)) {
 							} else {
 
 								if (!searchResult.getText().toLowerCase()
