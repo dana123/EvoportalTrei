@@ -54,8 +54,9 @@ public class ReceiveMailTest {
 		calendarStep.setDateStep(4,4,2014, 4,4,2014);
 		
 		
-		newRequestSteps.chooseVacationType("CO");
+		newRequestSteps.chooseAVacationType("CO");
 		newRequestSteps.saveRequest();
+		
 		
 //		newRequestMenuSteps.chooseNewRequestMenu();
 //		calendarStep.setDateStep(5,4,2014, 5,4,2014);

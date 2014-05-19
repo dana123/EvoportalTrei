@@ -125,15 +125,16 @@ public class ReadMailSample {
  
     }
  
-  public void readLastMail(){
+  public String readLastMail(){
 	  
 	  int contentInteger;
 	  String subject;
+	  String dateIO = null;
 	  String subjectText ="You have submitted a new Vacation Request";
-	  String StartDate;
-	  String ContentStartDate;
-	 
-	  String EndDate;
+//	  String StartDate;
+//	  String ContentStartDate;
+//	 
+//	  String EndDate;
 	  
 	  properties = new Properties();
       properties.setProperty("mail.host", "mail.evozon.com");
@@ -198,8 +199,12 @@ public class ReadMailSample {
               sb2.append(contentInteger);
               
               System.out.println(sb2);
+              StringBuilder se = new StringBuilder();
+              se.append(sb1+ " " + sb2);
+              System.out.println(se);
               
-              
+              dateIO = se.toString();
+              System.out.println(dateIO);
               
           if(subject.toLowerCase().trim().equals(subjectText.toLowerCase().trim())){
         	  System.out.println("Subject is good");
@@ -220,7 +225,7 @@ public class ReadMailSample {
           e.printStackTrace();
       }
       
-      
+      return dateIO;
      
   }
   
