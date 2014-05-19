@@ -28,9 +28,9 @@ import com.steps.LogInSteps;
 import com.steps.MyRequestsSteps;
 import com.steps.NewRequestSteps;
 
-@Story(Application.Authentication.LogIn.class)
+@Story(Application.FreeDaysHistory.Filters.class)
 @RunWith(ThucydidesRunner.class)
-public class FreeDaysHistoryTest {
+public class FreeDaysHistoryFiltersTest {
 
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
@@ -43,41 +43,40 @@ public class FreeDaysHistoryTest {
 
 	@Steps
 	FreeDaysHistorySteps freeDaysHistorySteps;
-	
+
 	@Steps
 	NewRequestSteps newRequestSteps;
-	
+
 	@Steps
 	ChooseNewRequestMenuStep newRequestMenuSteps;
-	
+
 	@Steps
 	CalendarSteps calendarStep;
-	
+
 	@Steps
 	MyRequestsSteps myRequestsSteps;
-	
-	
 
 	@Test
-	public void filterRequests() throws ParseException {
+	public void filterRequests(){
 		logInSteps.openPage();
 		logInSteps.logIn("horatiuencian", "Jungla123");
-		
-		newRequestMenuSteps.chooseNewRequestMenu();
-		calendarStep.setDateStep(8,8,2014, 8,8,2014);
-		newRequestSteps.newRequestStep( "CO", "Your request completed successfully.", false);
-		
-		
+
+		// newRequestMenuSteps.chooseNewRequestMenu();
+		// calendarStep.setDateStep(8,8,2014, 8,8,2014);
+		// newRequestSteps.newRequestStep( "CO",
+		// "Your request completed successfully.", false);
+
 		freeDaysHistorySteps.clickFreeDaysHistoryMenu();
-		
-	    String currentDate =  DateUtils.getCurrentDate();
-	    System.out.println("The date is " + currentDate);
-	    freeDaysHistorySteps.checkIfTableContains(currentDate);
-		
-//		String vacationId = newRequestSteps.getVacationId();
-		
-//		freeDaysHistorySteps.checkFilters();
-//	    newRequestSteps.withdrawRequest();
-		
+		freeDaysHistorySteps.checkFilters();
+
+		// String currentDate = DateUtils.getCurrentDate();
+		// System.out.println("The date is " + currentDate);
+		// freeDaysHistorySteps.checkIfTableContains(currentDate);
+
+		// String vacationId = newRequestSteps.getVacationId();
+
+		// freeDaysHistorySteps.checkFilters();
+		// newRequestSteps.withdrawRequest();
+
 	}
 }
