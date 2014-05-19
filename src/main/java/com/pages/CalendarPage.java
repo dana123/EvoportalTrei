@@ -41,7 +41,7 @@ public class CalendarPage extends PageObject {
 			element(calendarTitle).waitUntilVisible();
 			String MandY = calendarTitle.getText();
 			SimpleDateFormat sdf = new SimpleDateFormat("MMM yyyy dd");
-			System.out.println(MandY + " 1");
+			System.out.println(MandY );
 			cal.setTime(sdf.parse(MandY + " 1"));
 
 			if (cal.compareTo(calNew) == -1) {

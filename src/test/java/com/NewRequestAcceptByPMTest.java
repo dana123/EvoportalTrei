@@ -49,7 +49,7 @@ public class NewRequestAcceptByPMTest {
 		logInSteps.logIn("horatiuencian", "920X-p0U");
 		
 		newRequestMenuSteps.chooseNewRequestMenu();
-		calendarStep.setDateStep(4,4,2014, 4,4,2014);
+		calendarStep.setDateStep(9,4,2014, 9,4,2014);
 		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.", false);
 		String vacationId = newRequestSteps.getVacationId();
 
