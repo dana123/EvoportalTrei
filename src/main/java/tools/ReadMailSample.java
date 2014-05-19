@@ -124,6 +124,7 @@ public class ReadMailSample {
   public void readLastMail(){
 	  
 	  String subject;
+	  String subjectText ="You have submitted a new Vacation Request";
 	  
 	  properties = new Properties();
       properties.setProperty("mail.host", "mail.evozon.com");
@@ -140,6 +141,7 @@ public class ReadMailSample {
           store.connect();
           inbox = store.getFolder("INBOX");
           inbox.open(Folder.READ_ONLY);
+         
           Message messages[] = inbox.search(new FlagTerm(
                   new Flags(Flag.SEEN), false));
           ;
@@ -152,12 +154,15 @@ public class ReadMailSample {
               System.out.println("From : " + from[0]);
               System.out.println("Subject: " + message.getSubject());
               subject = message.getSubject();
-              System.out.println("Subject is: " + subject);
+//              System.out.println("Subject is: " + subject);
               System.out.println("Content :");
               processMessageBody(message);
               System.out.println("--------------------------------");
 
           
+              
+              
+              
           inbox.close(true);
           store.close();
       } catch (NoSuchProviderException e) {
@@ -165,8 +170,15 @@ public class ReadMailSample {
       } catch (MessagingException e) {
           e.printStackTrace();
       }
+      
+      
+     
   }
   
+  
+  public void checkContent(){
+//
+  }
     
     
     
