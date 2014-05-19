@@ -164,7 +164,7 @@ public class ReadMailSample {
               System.out.println("From : " + from[0]);
               System.out.println("Subject: " + message.getSubject());
               subject = message.getSubject();
-//              System.out.println("Subject is: " + subject);
+              System.out.println("Subject is: " + subject);
               System.out.println("Content :");
               processMessageBody(message);
               
