@@ -21,6 +21,7 @@ public class NewRequestSteps {
 	@Step
 	public void saveRequest() {
 		newVacation.saveNewRequestButton();
+		
 	}
 
 	@Step
@@ -77,6 +78,6 @@ public class NewRequestSteps {
 //			checkMessage(message);
 //		}
 		// withdrawRequest();
-		logOut();
+//		logOut();
 	}
 }

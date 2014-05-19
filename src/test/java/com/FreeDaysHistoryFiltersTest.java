@@ -1,5 +1,10 @@
 package com;
 
+/**
+ * @author EncianHoratiu
+ * 
+ */
+
 import java.text.ParseException;
 
 import net.thucydides.core.annotations.Managed;
@@ -13,16 +18,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
+import tools.DateUtils;
+
 import com.requirements.Application;
 import com.steps.CalendarSteps;
 import com.steps.ChooseNewRequestMenuStep;
+import com.steps.FreeDaysHistorySteps;
 import com.steps.LogInSteps;
 import com.steps.MyRequestsSteps;
 import com.steps.NewRequestSteps;
 
-@Story(Application.Authentication.LogIn.class)
+@Story(Application.FreeDaysHistory.Filters.class)
 @RunWith(ThucydidesRunner.class)
-public class NewRequestTest {
+public class FreeDaysHistoryFiltersTest {
+
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
 
@@ -33,36 +42,41 @@ public class NewRequestTest {
 	LogInSteps logInSteps;
 
 	@Steps
+	FreeDaysHistorySteps freeDaysHistorySteps;
+
+	@Steps
 	NewRequestSteps newRequestSteps;
-	
+
 	@Steps
 	ChooseNewRequestMenuStep newRequestMenuSteps;
-	
+
 	@Steps
 	CalendarSteps calendarStep;
-	
+
 	@Steps
 	MyRequestsSteps myRequestsSteps;
 
 	@Test
-	public void newRequestPart1() throws ParseException {
+	public void filterRequests(){
+		logInSteps.openPage();
 		logInSteps.logIn("horatiuencian", "Jungla123");
-		
-		newRequestMenuSteps.chooseNewRequestMenu();
-		calendarStep.setDateStep(4,4,2014, 4,4,2014);
-		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.", false);
-		
-		
-		String vacationId = newRequestSteps.getVacationId();
-		System.out.print(vacationId);
-		newRequestMenuSteps.chooseNewRequestMenu();
-		calendarStep.setDateStep(4,4,2014, 4,4,2014);
-//		newRequestSteps.newRequestStep( "CS", "Your request failed to complete.", true);
-		
-//		myRequestsSteps.clickMyRequestsPage();
-		
-		newRequestSteps.goToRequest(vacationId);
-		newRequestSteps.withdrawRequest();
-	}
 
+		// newRequestMenuSteps.chooseNewRequestMenu();
+		// calendarStep.setDateStep(8,8,2014, 8,8,2014);
+		// newRequestSteps.newRequestStep( "CO",
+		// "Your request completed successfully.", false);
+
+		freeDaysHistorySteps.clickFreeDaysHistoryMenu();
+		freeDaysHistorySteps.checkFilters();
+
+		// String currentDate = DateUtils.getCurrentDate();
+		// System.out.println("The date is " + currentDate);
+		// freeDaysHistorySteps.checkIfTableContains(currentDate);
+
+		// String vacationId = newRequestSteps.getVacationId();
+
+		// freeDaysHistorySteps.checkFilters();
+		// newRequestSteps.withdrawRequest();
+
+	}
 }

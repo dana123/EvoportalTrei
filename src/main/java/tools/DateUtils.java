@@ -8,6 +8,19 @@ import java.util.Date;
 import com.google.protobuf.TextFormat.ParseException;
 
 public class DateUtils {
+	
+	
+	public static String getCurrentDate(){
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
+		Calendar cal = Calendar.getInstance();
+//		cal.add(Calendar.MINUTE, -1);
+		String currentDate = dateFormat.format(cal.getTime()).toString();
+		return currentDate;
+		
+	}
+	
+	
 	public static int calculateDuration(String initialDateString,
 			   String finalDateString) throws ParseException, java.text.ParseException {
 		

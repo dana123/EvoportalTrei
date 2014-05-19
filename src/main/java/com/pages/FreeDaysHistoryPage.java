@@ -1,6 +1,6 @@
 package com.pages;
 
-
+// Author Encian Horatiu
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,25 +14,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class FreeDaysHistoryPage extends PageObject {
 
-	
 	String var;
-	
+
 	@FindBy(css = ".nav-list a[href*='menuItem=free-days-history']")
 	private WebElement freeDaysHistoryButton;
 
 	@FindBy(id = "_evovacation_WAR_EvoVacationportlet_applyButton")
 	WebElement applyFilters;
 
-	
 	// got to history days page
 	public void clickFreeDaysHistoryMenu() {
 		freeDaysHistoryButton.click();
 	}
 
-	
-
-	
-//	Select the filters
+	// Select the filters
 	public void selectAFilterType(String vacationType) {
 		switch (vacationType) {
 		case "Anniversary":
@@ -47,6 +42,12 @@ public class FreeDaysHistoryPage extends PageObject {
 		case "Vacation Without Payment":
 			var = "CFCheckbox";
 			break;
+		case "11 - 20":
+			var = "TWENTIETHCheckbox";
+			break;
+		case "Added Days":
+			var = "ADDED_DAYSCheckbox";
+			break;
 
 		}
 		WebElement element = getDriver()
@@ -59,14 +60,13 @@ public class FreeDaysHistoryPage extends PageObject {
 			System.out.println(element);
 		element.click();
 	}
-	
-	
+
 	// apply the filters
-		public void clickOnApplyFilters() {
-			applyFilters.click();
-		}
-	
-	
+	public void clickOnApplyFilters() {
+		applyFilters.click();
+		waitABit(1000);
+	}
+
 	// check if free days history table exists
 	public void checkIfHistoryTableExists() {
 		WebElement element = getDriver().findElement(
@@ -79,74 +79,88 @@ public class FreeDaysHistoryPage extends PageObject {
 		Assert.assertTrue("Table is not displayed", isDisplayed);
 	}
 
-	
-	
 	// Check's if the filters are working properly
+	
+	// Method for filters Redone
 	public void verifySearchResultsContainsItem(String... terms) {
-		boolean found = false;
-		
 		String noOfPagesContainer = getDriver()
 				.findElement(
 						By.cssSelector("div.page-links > span.aui-paginator-current-page-report.aui-paginator-total"))
 				.getText().trim();
-		
-		int noOfPages = tools.StringUtils.getAllIntegerNumbersFromString(noOfPagesContainer).get(1);
-		
-		System.out.println(noOfPages);		
-		
+		System.out.println(noOfPagesContainer);
+		int noOfPages = tools.StringUtils.getAllIntegerNumbersFromString(
+				noOfPagesContainer).get(1);
+		System.out.println(noOfPages);
 		for (int i = 0; i < noOfPages; i++) {
-			List<WebElement> searchResults1 = getDriver().findElements(By.cssSelector(".portlet-section-body.results-row"));
-//			List<WebElement> searchResults2 = getDriver().findElements(By.cssSelector(".portlet-section-body.results-row.last"));
-			List<WebElement> searchResults3 = getDriver().findElements(By.cssSelector(".portlet-section-alternate.results-row.alt"));
-		
+
+			List<WebElement> searchResults1 = getDriver().findElements(
+					By.cssSelector(".portlet-section-body.results-row"));
+			List<WebElement> searchResults3 = getDriver()
+					.findElements(
+							By.cssSelector(".portlet-section-alternate.results-row.alt"));
+
 			List<WebElement> searchResults = new ArrayList<WebElement>();
+
 			searchResults.addAll(searchResults1);
-//			searchResults.addAll(searchResults2);
 			searchResults.addAll(searchResults3);
-				
-			for (WebElement searchResult : searchResults) {
-					System.out.println(searchResult.getText());
-				}
+			searchResults.remove(0);
+
+			System.out.println("size: " + searchResults.size());
 
 			for (WebElement searchResult : searchResults) {
-				boolean containsTerms = true;
-				System.out.println(searchResult.getText());
-//				$(searchResult).waitUntilVisible();
-					
+
+				// boolean found = false;
+
+				System.out.println("element text: " + searchResult.getText());
+
 				for (String term : terms) {
-						if (searchResult.getText().toLowerCase()
-								.contains(term.toLowerCase())) {
-							
-						containsTerms = false;
-						System.out.println(term + " element found");
-						
+					System.out.println(term);
+
+					if (term.contains("-")) {
+						String daysRange = term;
+						System.out.println(daysRange);
+						daysRange.trim();
+
+						int lowLimit = tools.StringUtils
+								.getAllIntegerNumbersFromString(daysRange).get(
+										0);
+						System.out.println("lowLimit = " + lowLimit);
+						int highLimit = tools.StringUtils
+								.getAllIntegerNumbersFromString(daysRange).get(
+										1);
+						System.out.println("highLimit = " + highLimit);
+						String days = searchResult.findElement(
+								By.cssSelector("td:nth-child(3)")).getText();
+						int dayNo = Integer.parseInt(days);
+						System.out.println(dayNo);
+						if (!(dayNo >= lowLimit && dayNo <= highLimit)) {
+							Assert.fail(String
+									.format("The list doesn't contain the correct data according to the applied filter"));
+
 						}
-//				}  s-ar putea sa fie bine asa
-					 if(containsTerms){
-						found = true;
-						System.out.println(term +  " element not found");
-						
+					} else {
+
+						if (!searchResult.getText().toLowerCase()
+
+						.contains(term.toLowerCase())) {
+							Assert.fail(String
+									.format("The '%s' search result item does not contain '%s'!",
+											searchResult.getText(), term));
+						}
 					}
-			}
 				}
-			
-			if (i < noOfPages - 1 && !found) {
-				getDriver()
-						.findElement(
-								By.cssSelector("div.page-links > a.aui-paginator-link.aui-paginator-next-link"))
-						.click();
-//				waitFor(ExpectedConditions
-//						.textToBePresentInElement(
-//								By.cssSelector("div.page-links > span.aui-paginator-current-page-report.aui-paginator-total"),
-//								String.format("(%d of %d)", i + 2, noOfPages)));
-				waitABit(2000);
+
+				if (i < noOfPages - 1) {
+					getDriver()
+							.findElement(
+									By.cssSelector("div.page-links > a.aui-paginator-link.aui-paginator-next-link"))
+							.click();
+
+					waitABit(2000);
+				}
+
 			}
-//			else{
-//				
-//				break;
-//			}
 		}
-		Assert.assertTrue("Element was not found!", found);
 	}
 
 }

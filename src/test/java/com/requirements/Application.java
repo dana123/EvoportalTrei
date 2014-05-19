@@ -8,4 +8,10 @@ public class Application {
       public class LogIn{}
       
     }
+    
+    @Feature
+    public class FreeDaysHistory{
+    	public class Filters{}
+    	public class TableContent{}
+    }
 }
