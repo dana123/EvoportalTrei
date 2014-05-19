@@ -1,5 +1,10 @@
 package com;
 
+/**
+ * @author EncianHoratiu
+ * 
+ */
+
 import java.text.ParseException;
 
 import net.thucydides.core.annotations.Managed;
@@ -13,16 +18,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
+import tools.DateUtils;
+
 import com.requirements.Application;
 import com.steps.CalendarSteps;
 import com.steps.ChooseNewRequestMenuStep;
+import com.steps.FreeDaysHistorySteps;
 import com.steps.LogInSteps;
 import com.steps.MyRequestsSteps;
 import com.steps.NewRequestSteps;
 
 @Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
-public class NewRequestAcceptByPMTest {
+public class FreeDaysHistoryTest {
+
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
 
@@ -32,6 +41,9 @@ public class NewRequestAcceptByPMTest {
 	@Steps
 	LogInSteps logInSteps;
 
+	@Steps
+	FreeDaysHistorySteps freeDaysHistorySteps;
+	
 	@Steps
 	NewRequestSteps newRequestSteps;
 	
@@ -43,32 +55,29 @@ public class NewRequestAcceptByPMTest {
 	
 	@Steps
 	MyRequestsSteps myRequestsSteps;
+	
+	
 
 	@Test
-	public void newRequestPart1() throws ParseException {
+	public void filterRequests() throws Exception {
+		logInSteps.openPage();
 		logInSteps.logIn("horatiuencian", "Jungla123");
 		
-//		newRequestMenuSteps.chooseNewRequestMenu();
-//		calendarStep.setDateStep(5,4,2014, 5,4,2014);
-//		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.", false);
-//		String vacationId = newRequestSteps.getVacationId();
-//System.out.println(vacationId);
-newRequestSteps.logOut();
-//		newRequestMenuSteps.chooseNewRequestMenu();
-//		calendarStep.setDateStep(4,4,2014, 4,4,2014);
-//		newRequestSteps.newRequestStep( "CS", "Your request failed to complete.", true);
+		newRequestMenuSteps.chooseNewRequestMenu();
+		calendarStep.setDateStep(8,8,2014, 8,8,2014);
+		newRequestSteps.newSpecialRequestStep( "CO", "Child birth","Your request completed successfully.",  false);
 		
-		//myRequestsSteps.clickMyRequestsPage();
-		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
-		newRequestSteps.inboxMenu();
-//		newRequestSteps.goToRequest("2598");
-//		System.out.println("2598");
-		try {
-		    Thread.sleep(1000);
-		} catch(InterruptedException ex) {
-		    Thread.currentThread().interrupt();
-		}
-//		newRequestSteps.withdrawRequest();
+		
+		freeDaysHistorySteps.clickFreeDaysHistoryMenu();
+		
+	    String currentDate =  DateUtils.getCurrentDate();
+	    System.out.println("The date is " + currentDate);
+	    freeDaysHistorySteps.checkIfTableContains(currentDate);
+		
+//		String vacationId = newRequestSteps.getVacationId();
+		
+//		freeDaysHistorySteps.checkFilters();
+//	    newRequestSteps.withdrawRequest();
+		
 	}
-
 }
