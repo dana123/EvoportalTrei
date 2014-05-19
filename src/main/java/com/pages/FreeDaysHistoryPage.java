@@ -122,7 +122,7 @@ public class FreeDaysHistoryPage extends PageObject {
 						System.out.println(term + " element found");
 						System.out
 								.println("THE ELEMENT WAS FOUND!!!!!!!!!!!!!!!!!");
-						break;
+						
 
 					}
 					// } It might not be well here must see again

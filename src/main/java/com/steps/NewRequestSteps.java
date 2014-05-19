@@ -78,6 +78,6 @@ public class NewRequestSteps {
 //			checkMessage(message);
 //		}
 		// withdrawRequest();
-		logOut();
+//		logOut();
 	}
 }
