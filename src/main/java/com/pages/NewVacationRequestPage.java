@@ -14,6 +14,8 @@ import org.openqa.selenium.WebElement;
  */
 public class NewVacationRequestPage extends PageObject {
 
+	// String currentDate;
+
 	@FindBy(css = ".carousel-slider.span3:nth-child(1) ul li:nth-child(2) a")
 	private WebElement newVacationRequestMenu;
 
@@ -52,9 +54,9 @@ public class NewVacationRequestPage extends PageObject {
 
 	@FindBy(css = ".carousel-slider a[href*='menuItem=inbox']")
 	private WebElementFacade inboxLink;
-	
+
 	@FindBy(css = "select[name='specialReason']")
-	 private WebElementFacade ChooseASpecialVacation;
+	private WebElementFacade ChooseASpecialVacation;
 
 	/**
 	 * @param vacationType
@@ -127,14 +129,20 @@ public class NewVacationRequestPage extends PageObject {
 		}
 	}
 
-	 public void checkErrorMessage(String error) {
-	 saveNewRequest.getCssValue(error);
-	 }
+	public void checkErrorMessage(String error) {
+		saveNewRequest.getCssValue(error);
+	}
 
 	public void saveNewRequestButton() {
 		saveNewRequest.click();
+		// DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		// Calendar cal = Calendar.getInstance();
+		// currentDate = dateFormat.format(cal.getTime()).toString();
+		//
+
 	}
 
+	// github.com/dana123/EvoportalTrei.git
 	public void withdrawRequestButton() {
 		withdraw.click();
 	}
@@ -157,57 +165,57 @@ public class NewVacationRequestPage extends PageObject {
 	public void clickInbox() {
 		inboxLink.click();
 	}
+
 	public void click_a_special_vacation(String value) {
-		  ChooseASpecialVacation.selectByVisibleText(value);
-		 }
+		ChooseASpecialVacation.selectByVisibleText(value);
+	}
+
 	public void selectAVacationType(String vacationType, String keywordDomain,
-			   String KeywordInstitution, String value,String com) {
-			  String var;
-			  switch (vacationType) {
-			  case "Holiday": {
-			   var = "CO";
-			   WebElement element = getDriver().findElement(
-			     By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
-			       + var));
-			   element.click();
-			   clickAddComment();
-			   tapeComment(com);
-			   break;
-			  }
-			  case "Vacation without payment": {
-			   var = "CF";
-			   WebElement element = getDriver().findElement(
-			     By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
-			       + var));
-			   element.click();
-			 
-			   clickAddComment();
-			   tapeComment(com);
-			   break;
-			  }
-			  case "Special vacation": {
-			   var = "CS";
-			   WebElement element = getDriver().findElement(
-			     By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
-			       + var));
-			   element.click();
-			   click_a_special_vacation(value);
-			   clickAddComment();
-			   tapeComment(com);
-			   break;
-			  }
-			  case "Sick leave":
-			   var = "CM";
-			   WebElement element = getDriver().findElement(
-			     By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
-			       + var));
-			   element.click();
-			   clickAddComment();
-			   tapeComment(com);
-			   break;
-			  }
-			 }
-//	public void getStartDate(){
-//		
-//	}
+			String KeywordInstitution, String value, String com) {
+		String var;
+		switch (vacationType) {
+		case "Holiday": {
+			var = "CO";
+			WebElement element = getDriver().findElement(
+					By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
+							+ var));
+			element.click();
+			clickAddComment();
+			tapeComment(com);
+			break;
+		}
+		case "Vacation without payment": {
+			var = "CF";
+			WebElement element = getDriver().findElement(
+					By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
+							+ var));
+			element.click();
+
+			clickAddComment();
+			tapeComment(com);
+			break;
+		}
+		case "Special vacation": {
+			var = "CS";
+			WebElement element = getDriver().findElement(
+					By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
+							+ var));
+			element.click();
+			click_a_special_vacation(value);
+			clickAddComment();
+			tapeComment(com);
+			break;
+		}
+		case "Sick leave":
+			var = "CM";
+			WebElement element = getDriver().findElement(
+					By.cssSelector("#_evovacation_WAR_EvoVacationportlet_type_"
+							+ var));
+			element.click();
+			clickAddComment();
+			tapeComment(com);
+			break;
+		}
+	}
+	
 }

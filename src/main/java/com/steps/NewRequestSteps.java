@@ -1,7 +1,5 @@
 package com.steps;
 
-import java.text.ParseException;
-
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.StepGroup;
 
@@ -21,6 +19,7 @@ public class NewRequestSteps {
 	@Step
 	public void saveRequest() {
 		newVacation.saveNewRequestButton();
+
 	}
 
 	@Step
@@ -57,33 +56,46 @@ public class NewRequestSteps {
 	public void inboxMenu() {
 		newVacation.clickInbox();
 	}
-	
+
 	@Step
-	 public void click_dropDown(String value) throws Exception {
-	  newVacation.click_a_special_vacation(value);
-	  Thread.sleep(4000);
-	 }
+	public void click_dropDown(String value) throws Exception {
+		newVacation.click_a_special_vacation(value);
+		Thread.sleep(4000);
+	}
 
 	/**
 	 * public void
 	 * 
 	 * @param vacationType
 	 *            Vacation - 'CO', 'CF', 'CS', 'CM']
-	 * @throws Exception 
+	 * @throws Exception
 	 * 
 	 */
 	@StepGroup
-	public void newRequestStep(String vacationType, String value, String message,
+	public void newRequestStep(String vacationType, String message,
 			boolean error) throws Exception {
 		chooseAVacationType(vacationType);
-		click_dropDown(value);
 		saveRequest();
 		if (error) {
 			checkErrorMessage(message);
 		} else {
 			checkMessage(message);
 		}
-//		 withdrawRequest();
-//		logOut();
+		withdrawRequest();
+		logOut();
+	}
+
+	@StepGroup
+	public void newSpecialRequestStep(String vacationType, String value,
+			String message, boolean error) throws Exception {
+		chooseAVacationType(vacationType);
+		click_dropDown(value);
+		saveRequest();
+		// if (error) {
+		// checkErrorMessage(message);
+		// } else {
+		// checkMessage(message);
+		// }
+
 	}
 }

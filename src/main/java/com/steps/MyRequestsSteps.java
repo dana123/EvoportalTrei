@@ -20,30 +20,30 @@ public class MyRequestsSteps extends ScenarioSteps {
 		myRequestPage.clickMyRequestsPage();
 	}
 
-//	@Step
-//	public void checkHolidayCheckBox() {
-//		myRequestPage.clickHolidayCheckBox();
-//	}
-//
-//	@Step
-//	public void checkVacationWithoutPayment() {
-//		myRequestPage.clickVacationWithoutPayment();
-//	}
-//
-//	@Step
-//	public void checkOneFiveFilter() {
-//		myRequestPage.checkOneFiveDaysFilter();
-//	}
-//
-//	@Step
-//	public void checkPending() {
-//		myRequestPage.clickPendingCheckBox();
-//	}
-//
-//	@Step
-//	public void applyFiltersOnMyRequests() {
-//		myRequestPage.clickApplyFilterButton();
-//	}
+	 @Step
+	 public void checkHolidayCheckBox() {
+	 myRequestPage.clickHolidayCheckBox();
+	 }
+	
+	 @Step
+	 public void checkVacationWithoutPayment() {
+	 myRequestPage.clickVacationWithoutPayment();
+	 }
+	
+	 @Step
+	 public void checkOneFiveFilter() {
+	 myRequestPage.checkOneFiveDaysFilter();
+	 }
+	
+	 @Step
+	 public void checkPending() {
+	 myRequestPage.clickPendingCheckBox();
+	 }
+	
+	@Step
+	public void applyFiltersOnMyRequests() {
+		myRequestPage.clickApplyFilterButton();
+	}
 
 	@Step
 	public int verifyIfTableExists() {
@@ -54,41 +54,31 @@ public class MyRequestsSteps extends ScenarioSteps {
 
 	@StepGroup
 	public void filterMyRequests(String... terms) {
-		// logInSteps.openPage();
-		// logInSteps.logIn("alexandruduminciuc", "alexandru87");
-
-		// New Requests
 
 		clickMyRequestsPage();
-		// checkHolidayCheckBox();
-		// checkVacationWithoutPayment();
-		// checkOneFiveFilter();
-		// checkPending();
+
 		//applyFiltersOnMyRequests();
 
 		if (verifyIfTableExists() == 1) {
-			// verifica corectitudinea datelor
-		
+
 			lookForElement(terms);
 		}
-			// Cancel or withdraw requests
 
 	}
-
 
 	@Step
 	public void lookForElement(String... terms) {
-		//myRequestPage.selectAVacationStatus(terms);
-		//myRequestPage.clickApplyFilterButton();
+		myRequestPage.selectAVacationStatus(terms);
+		applyFiltersOnMyRequests();
+		
 		myRequestPage.verifySearchResultsContainsItem(terms);
 	}
 
-//	@Step
-//	public void lookForElement(String terms) {
-////		myRequestPage.selectAVacationStatus(terms);
-////		applyFiltersOnMyRequests();
-//		myRequestPage.verifyIfTheFilteredTableContainsAVacationsWithOtherStatusThanFilter(terms);
-//	}
-
+	// @Step
+	// public void lookForElement(String terms) {
+	// // myRequestPage.selectAVacationStatus(terms);
+	// // applyFiltersOnMyRequests();
+	// myRequestPage.verifyIfTheFilteredTableContainsAVacationsWithOtherStatusThanFilter(terms);
+	// }
 
 }

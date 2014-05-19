@@ -1,5 +1,12 @@
 package com;
 
+/**
+ * @author EncianHoratiu
+ * 
+ */
+
+import java.text.ParseException;
+
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.ManagedPages;
 import net.thucydides.core.annotations.Steps;
@@ -11,9 +18,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
+import tools.DateUtils;
+
 import com.requirements.Application;
+import com.steps.CalendarSteps;
+import com.steps.ChooseNewRequestMenuStep;
 import com.steps.FreeDaysHistorySteps;
 import com.steps.LogInSteps;
+import com.steps.MyRequestsSteps;
+import com.steps.NewRequestSteps;
 
 @Story(Application.Authentication.LogIn.class)
 @RunWith(ThucydidesRunner.class)
@@ -30,14 +43,41 @@ public class FreeDaysHistoryTest {
 
 	@Steps
 	FreeDaysHistorySteps freeDaysHistorySteps;
+	
+	@Steps
+	NewRequestSteps newRequestSteps;
+	
+	@Steps
+	ChooseNewRequestMenuStep newRequestMenuSteps;
+	
+	@Steps
+	CalendarSteps calendarStep;
+	
+	@Steps
+	MyRequestsSteps myRequestsSteps;
+	
+	
 
 	@Test
-	public void filterRequests() {
+	public void filterRequests() throws Exception {
 		logInSteps.openPage();
 		logInSteps.logIn("horatiuencian", "Jungla123");
 		
-		freeDaysHistorySteps.checkFilters();
+		newRequestMenuSteps.chooseNewRequestMenu();
+		calendarStep.setDateStep(8,8,2014, 8,8,2014);
+		newRequestSteps.newSpecialRequestStep( "CO", "Child birth","Your request completed successfully.",  false);
 		
+		
+		freeDaysHistorySteps.clickFreeDaysHistoryMenu();
+		
+	    String currentDate =  DateUtils.getCurrentDate();
+	    System.out.println("The date is " + currentDate);
+	    freeDaysHistorySteps.checkIfTableContains(currentDate);
+		
+//		String vacationId = newRequestSteps.getVacationId();
+		
+//		freeDaysHistorySteps.checkFilters();
+//	    newRequestSteps.withdrawRequest();
 		
 	}
 }
