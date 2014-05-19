@@ -53,7 +53,7 @@ public class AssignedToMeTest {
 		Thread.sleep(3000);
 	}
 
-	//@Test
+	// @Test
 	public void reject_requestsTest() throws InterruptedException {
 		logInSteps.openPage();
 		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
@@ -75,7 +75,7 @@ public class AssignedToMeTest {
 		assignedToMeSteps.approveAllRequests();
 	}
 
-	//@Test
+	// @Test
 	public void reject_all_requestsTest() {
 		logInSteps.openPage();
 		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
@@ -123,6 +123,7 @@ public class AssignedToMeTest {
 		logInSteps.logIn("deliatripon", "89H5H0g6");
 		logInSteps.logout();
 	}
+	
 
 	@Test
 	public void navigate_inboxTest() {
@@ -133,7 +134,7 @@ public class AssignedToMeTest {
 
 	}
 
-	//@Test
+	// @Test
 	public void navigate_Employees_pages_approveReqTest() {
 		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
 		assignedToMeSteps.accessNewVacation();
