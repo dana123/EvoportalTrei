@@ -3,6 +3,7 @@ package tools;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
 import javax.mail.Address;
 import javax.mail.BodyPart;
 import javax.mail.Flags;
@@ -24,12 +25,14 @@ public class ReadMailSample {
     private Folder inbox = null;
     private String userName = "horatiu.encian@evozon.com";// provide user name
     private String password = "Jungla123.";// provide password
- 
+    public String alfa;
     public ReadMailSample() {
  
     }
  
     public void readMails() {
+    	String alfa;
+    	
         properties = new Properties();
         properties.setProperty("mail.host", "mail.evozon.com");
         properties.setProperty("mail.port", "993");
@@ -79,6 +82,7 @@ public class ReadMailSample {
             // then check for multipart
             if (content instanceof String) {
                 System.out.println(content);
+                alfa = (String) content;
             } else if (content instanceof Multipart) {
                 Multipart multiPart = (Multipart) content;
                 procesMultiPart(multiPart);
@@ -123,8 +127,13 @@ public class ReadMailSample {
  
   public void readLastMail(){
 	  
+	  int contentInteger;
 	  String subject;
 	  String subjectText ="You have submitted a new Vacation Request";
+	  String StartDate;
+	  String ContentStartDate;
+	 
+	  String EndDate;
 	  
 	  properties = new Properties();
       properties.setProperty("mail.host", "mail.evozon.com");
@@ -157,9 +166,49 @@ public class ReadMailSample {
 //              System.out.println("Subject is: " + subject);
               System.out.println("Content :");
               processMessageBody(message);
+              
+              
               System.out.println("--------------------------------");
+//              System.out.println(content);
 
-          
+              
+//              DE AICI E FACUT SA VEDEM DACA E BINE
+//              START DATE STRING
+              StringBuilder sb1 = new StringBuilder();
+              contentInteger = tools.StringUtils.getAllIntegerNumbersFromString(alfa).get(0);
+              sb1.append(contentInteger);
+              sb1.append("/");
+              contentInteger = tools.StringUtils.getAllIntegerNumbersFromString(alfa).get(1);
+              sb1.append(contentInteger);
+              sb1.append("/");
+              contentInteger = tools.StringUtils.getAllIntegerNumbersFromString(alfa).get(2);
+              sb1.append(contentInteger);
+              
+              System.out.println(sb1);
+              
+//              END DATE STRING
+              StringBuilder sb2 = new StringBuilder();
+              contentInteger = tools.StringUtils.getAllIntegerNumbersFromString(alfa).get(3);
+              sb2.append(contentInteger);
+              sb2.append("/");
+              contentInteger = tools.StringUtils.getAllIntegerNumbersFromString(alfa).get(4);
+              sb2.append(contentInteger);
+              sb2.append("/");
+              contentInteger = tools.StringUtils.getAllIntegerNumbersFromString(alfa).get(5);
+              sb2.append(contentInteger);
+              
+              System.out.println(sb2);
+              
+              
+              
+          if(subject.toLowerCase().trim().equals(subjectText.toLowerCase().trim())){
+        	  System.out.println("Subject is good");
+        	  
+        	
+        		  
+        	  
+        	  
+          }
               
               
               
