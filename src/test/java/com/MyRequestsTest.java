@@ -61,7 +61,7 @@ public class MyRequestsTest {
 //		calendarStep.setDateStep(16,4,2014, 23,4,2014);
 //		newRequestSteps.chooseVacationType("CO");
 //		newRequestSteps.saveRequest();
-		myRequestsSteps.filterMyRequests("Vacation Without Payment", "1 - 5", "Withdrawn", "Holiday", "51 +", "Pending");
+		myRequestsSteps.filterMyRequests("Vacation Without Payment", "1 - 5", "Withdrawn");
 	}
 	
 //	@Test
