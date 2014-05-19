@@ -34,7 +34,7 @@ public class FreeDaysHistorySteps extends ScenarioSteps {
 		freeDaysHistoryPage.selectAFilterType(filter);
 	}
 
-//	check if the table contains the given element - from the filter 
+	// check if the table contains the given element - from the filter
 	public void checkIfTableContains(String... terms) {
 		freeDaysHistoryPage.verifySearchResultsContainsItem(terms);
 	}
@@ -45,12 +45,9 @@ public class FreeDaysHistorySteps extends ScenarioSteps {
 		clickFreeDaysHistoryMenu();
 		selectFilters("Vacation days");
 		selectFilters("11 - 20");
-		
-	    clickOnApplyFilters();
-	  
-		
-	    checkIfTableContains("Anniversary", "3");
-		
+
+		clickOnApplyFilters();
+		checkIfTableContains("33 - 44");
 
 	}
 

@@ -76,6 +76,7 @@ public class NewRequestSteps {
 			boolean error) throws Exception {
 		chooseAVacationType(vacationType);
 		saveRequest();
+
 		if (error) {
 			checkErrorMessage(message);
 		} else {
@@ -83,6 +84,7 @@ public class NewRequestSteps {
 		}
 		withdrawRequest();
 		logOut();
+
 	}
 
 	@StepGroup
