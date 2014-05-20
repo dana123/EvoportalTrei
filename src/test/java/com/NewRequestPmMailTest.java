@@ -55,7 +55,8 @@ public class NewRequestPmMailTest {
 		calendarStep.setDateStep(11,4,2014, 11,4,2014);
 		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.", false);
 		newRequestSteps.withdrawRequest();
-		assignedToMeSteps.readPmMail();
+
+		//assignedToMeSteps.readPmMail();
 		
 		
 		
