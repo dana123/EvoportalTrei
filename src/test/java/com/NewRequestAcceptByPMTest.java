@@ -46,7 +46,7 @@ public class NewRequestAcceptByPMTest {
 
 	@Test
 	public void newRequestPart1() throws ParseException {
-		logInSteps.logIn("horatiuencian", "920X-p0U");
+		logInSteps.logIn("horatiuencian", "Jungla123");
 		
 		newRequestMenuSteps.chooseNewRequestMenu();
 		calendarStep.setDateStep(9,4,2014, 9,4,2014);
