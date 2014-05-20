@@ -73,4 +73,8 @@ public class AssignedToMeSteps extends ScenarioSteps {
 	 public void clickGoThrowPages(){
 		assignedToMePage.goThrowPages();
 	 }
+	@Step
+	 public void readPmMail(){
+		assignedToMePage.readLastMail();
+	 }
 }
