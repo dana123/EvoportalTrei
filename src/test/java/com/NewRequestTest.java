@@ -51,8 +51,6 @@ public class NewRequestTest {
 
 		newRequestMenuSteps.chooseNewRequestMenu();
 		calendarStep.setDateStep(3, 4, 2014, 3, 4, 2014);
-//		String getStartDate = calendarStep.setStartDate(month, day, year);
-//		String getEnd Date= calendarStep.setEndDate(month1, day1, year1);
 		newRequestSteps.newRequestStep("CO",
 				"Your request completed successfully.", false);
 		String vacationId = newRequestSteps.getVacationId();
