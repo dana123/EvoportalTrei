@@ -59,6 +59,7 @@ public class CalendarPage extends PageObject {
 			if (currentDay.getText().toLowerCase()
 					.contains(String.valueOf(day).toLowerCase()))
 				currentDay.click();
+		
 		}
 
 	}
