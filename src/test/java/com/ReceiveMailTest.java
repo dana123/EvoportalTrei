@@ -79,14 +79,14 @@ public class ReceiveMailTest {
 
 		String dateIOI = sd1.toString();
 		System.out.println(" DateIOI: " + dateIOI);
-		mail.setUserName("alexandru.duminciuc@evozon.com");
-		mail.setPassword("Duminciuc878@");
-		String mailReturn = mail.readLastMail();
-		System.out.println(" Mail returnat: " + mailReturn);
-		if (dateIOI.contains(mailReturn)) {
-			System.out.println("Datele sunt corecte");
-		}
-		newRequestSteps.withdrawRequest();
+//		mail.setUserName("alexandru.duminciuc@evozon.com");
+//		mail.setPassword("Duminciuc878@");
+//		String mailReturn = mail.readLastMail();
+//		System.out.println(" Mail returnat: " + mailReturn);
+//		if (dateIOI.contains(mailReturn)) {
+//			System.out.println("Datele sunt corecte");
+//		}
+//		newRequestSteps.withdrawRequest();
 
 		// newRequestSteps.chooseAVacationType("CO");
 		// newRequestSteps.saveRequest();
