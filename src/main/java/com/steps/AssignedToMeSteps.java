@@ -74,9 +74,10 @@ public class AssignedToMeSteps extends ScenarioSteps {
 		assignedToMePage.goThrowPages();
 	 }
 	
+
 	//MAIL
-//	@Step
-//	 public void readPmMail(){
-//		assignedToMePage.readLastMail();
-//	 }
+	@Step
+	 public void goToPmURL(String url){
+		getDriver().get(url);
+	 }
 }
