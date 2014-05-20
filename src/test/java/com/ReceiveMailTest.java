@@ -47,32 +47,49 @@ public class ReceiveMailTest {
 
 	@Steps
 	NewRequestSteps newRequestSteps;
-	
+
 	@Steps
 	ReadMailSample mail;
-	
+
 	@Test
 	public void testMailReceive() throws ParseException {
 
-		//login.logIn("alexandruduminciuc", "alexandru87");
-//
-//		newRequestMenuSteps.chooseNewRequestMenu();
-//		calendarStep.setDateStep(4, 4, 2014, 4, 5, 2014);
+		
+		int startDay = 17;
+		int startMonth = 6;
+		int startYear = 2014;
+		int endDay = 26;
+		int endMonth = 6;
+		int endYear = 2014;
+		login.logIn("alexandruduminciuc", "alexandru87");
+
+		newRequestMenuSteps.chooseNewRequestMenu();
+		calendarStep.setDateStep(startMonth, startDay, startYear, endMonth, endDay, endYear);
+		newRequestSteps.chooseAVacationType("CO");
+		newRequestSteps.saveRequest();
+		try {
+		    Thread.sleep(5000);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 		StringBuilder sd1 = new StringBuilder();
-		sd1.append(4 + "/" + 3 + "/" + 2014 + " " + 4 + "/" + 3 + "/" + 2014);
+		sd1.append(startDay + "/" + startMonth + "/" + startYear + " " + endDay + "/" + endMonth + "/" + endYear);
 
 		System.out.println(sd1);
 
 		String dateIOI = sd1.toString();
 		System.out.println(" DateIOI: " + dateIOI);
+		mail.setUserName("alexandru.duminciuc@evozon.com");
+		mail.setPassword("Duminciuc878@");
 		String mailReturn = mail.readLastMail();
 		System.out.println(" Mail returnat: " + mailReturn);
-		if (dateIOI.contains(mailReturn)){
+		if (dateIOI.contains(mailReturn)) {
 			System.out.println("Datele sunt corecte");
 		}
+		newRequestSteps.withdrawRequest();
 
-//		newRequestSteps.chooseAVacationType("CO");
-//		newRequestSteps.saveRequest();
+		// newRequestSteps.chooseAVacationType("CO");
+		// newRequestSteps.saveRequest();
 
 		// newRequestMenuSteps.chooseNewRequestMenu();
 		// calendarStep.setDateStep(5,4,2014, 5,4,2014);
