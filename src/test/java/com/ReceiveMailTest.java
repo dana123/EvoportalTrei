@@ -68,7 +68,7 @@ public class ReceiveMailTest {
 		newRequestSteps.chooseAVacationType("CO");
 		newRequestSteps.saveRequest();
 		try {
-		    Thread.sleep(5000);
+		    Thread.sleep(10000);
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}

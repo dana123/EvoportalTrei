@@ -7,6 +7,7 @@ import java.util.Properties;
 import javax.mail.Address;
 import javax.mail.BodyPart;
 import javax.mail.Flags;
+import javax.mail.Flags.Flag;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -15,11 +16,9 @@ import javax.mail.NoSuchProviderException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Store;
-import javax.mail.Flags.Flag;
 import javax.mail.search.FlagTerm;
 
-import org.jruby.ir.instructions.JumpInstr;
-import org.openqa.jetty.html.Break;
+
 
 public class ReadMailSample {
 	Properties properties = null;
