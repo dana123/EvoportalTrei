@@ -53,7 +53,7 @@ public class FreeDaysHistoryTableTest {
 	
 //	test if after making a request data is correctly inserted in the table
 	@Test
-	public void checkTableData() throws ParseException{
+	public void checkTableData() throws Exception{
 		logInSteps.openPage();
 		logInSteps.logIn("horatiuencian", "Jungla123");
 		
