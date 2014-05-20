@@ -34,41 +34,50 @@ public class NewRequestAcceptByPMTest {
 
 	@Steps
 	NewRequestSteps newRequestSteps;
-	
+
 	@Steps
 	ChooseNewRequestMenuStep newRequestMenuSteps;
-	
+
 	@Steps
 	CalendarSteps calendarStep;
-	
+
 	@Steps
 	MyRequestsSteps myRequestsSteps;
 
 	@Test
-	public void newRequestPart1() throws ParseException {
+	public void newRequestPart1() throws Exception {
 		logInSteps.logIn("horatiuencian", "Jungla123");
-		
-//		newRequestMenuSteps.chooseNewRequestMenu();
-//		calendarStep.setDateStep(5,4,2014, 5,4,2014);
-//		newRequestSteps.newRequestStep( "CS", "Your request completed successfully.", false);
-//		String vacationId = newRequestSteps.getVacationId();
-//System.out.println(vacationId);
-newRequestSteps.logOut();
-//		newRequestMenuSteps.chooseNewRequestMenu();
-//		calendarStep.setDateStep(4,4,2014, 4,4,2014);
-//		newRequestSteps.newRequestStep( "CS", "Your request failed to complete.", true);
-		
-		//myRequestsSteps.clickMyRequestsPage();
+
+		newRequestMenuSteps.chooseNewRequestMenu();
+		calendarStep.setDateStep(9, 4, 2014, 9, 4, 2014);
+		newRequestSteps.newRequestStep("CS",
+				"Your request completed successfully.", false);
+		String vacationId = newRequestSteps.getVacationId();
+
+		// newRequestMenuSteps.chooseNewRequestMenu();
+		// calendarStep.setDateStep(5,4,2014, 5,4,2014);
+		// newRequestSteps.newRequestStep( "CS",
+		// "Your request completed successfully.", false);
+		// String vacationId = newRequestSteps.getVacationId();
+		// System.out.println(vacationId);
+		newRequestSteps.logOut();
+
+		// newRequestMenuSteps.chooseNewRequestMenu();
+		// calendarStep.setDateStep(4,4,2014, 4,4,2014);
+		// newRequestSteps.newRequestStep( "CS",
+		// "Your request failed to complete.", true);
+
+		// myRequestsSteps.clickMyRequestsPage();
 		logInSteps.logIn("evoportalpmtrei", "FWMnE7n2");
 		newRequestSteps.inboxMenu();
-//		newRequestSteps.goToRequest("2598");
-//		System.out.println("2598");
+		// newRequestSteps.goToRequest("2598");
+		// System.out.println("2598");
 		try {
-		    Thread.sleep(1000);
-		} catch(InterruptedException ex) {
-		    Thread.currentThread().interrupt();
+			Thread.sleep(1000);
+		} catch (InterruptedException ex) {
+			Thread.currentThread().interrupt();
 		}
-//		newRequestSteps.withdrawRequest();
+		// newRequestSteps.withdrawRequest();
 	}
 
 }
